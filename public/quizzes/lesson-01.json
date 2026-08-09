@@ -1,0 +1,79 @@
+{
+  "id": "quiz-lesson-01",
+  "lessonId": "lesson-01",
+  "title": "What Is Docker & Why Containers?",
+  "passingScore": 60,
+  "questions": [
+    {
+      "id": "q1",
+      "type": "single-choice",
+      "prompt": "What is the key difference between a container and a virtual machine?",
+      "options": [
+        { "id": "a", "text": "A container includes its own full operating system, a VM does not" },
+        { "id": "b", "text": "A container shares the host's kernel and is an isolated process; a VM runs its own guest OS on a hypervisor" },
+        { "id": "c", "text": "There is no difference; the words are interchangeable" },
+        { "id": "d", "text": "A VM is always smaller and faster than a container" }
+      ],
+      "answer": "b",
+      "explanation": "A container is an isolated process that shares the host kernel, so it is lightweight. A VM runs a full guest OS on a hypervisor, which is heavier."
+    },
+    {
+      "id": "q2",
+      "type": "single-choice",
+      "prompt": "Which statement correctly describes images and containers?",
+      "options": [
+        { "id": "a", "text": "An image is a running process; a container is a template" },
+        { "id": "b", "text": "An image is a read-only template; a container is a running instance of that image" },
+        { "id": "c", "text": "Each image can produce exactly one container" },
+        { "id": "d", "text": "Containers are stored in registries; images are not" }
+      ],
+      "answer": "b",
+      "explanation": "An image is a read-only template. A container is a running instance created from an image, with a thin writable layer added on top. One image can produce many containers."
+    },
+    {
+      "id": "q3",
+      "type": "multiple-choice",
+      "prompt": "Which of the following are parts of the Docker architecture? Select all that apply.",
+      "options": [
+        { "id": "a", "text": "The docker command-line client" },
+        { "id": "b", "text": "The dockerd daemon" },
+        { "id": "c", "text": "A registry such as Docker Hub" },
+        { "id": "d", "text": "A required cloud account that runs your containers remotely" }
+      ],
+      "answer": ["a", "b", "c"],
+      "explanation": "The client talks to the daemon, which runs containers and pulls or pushes images to a registry. Docker runs locally; no remote cloud account is required."
+    },
+    {
+      "id": "q4",
+      "type": "fill-blank",
+      "prompt": "Because Docker builds images that follow the ______ standard, they also run on other compliant tools. (three-letter acronym)",
+      "answer": ["OCI", "oci"],
+      "explanation": "The Open Container Initiative (OCI) standardizes the image and runtime formats, which is what makes images portable across compliant tools."
+    },
+    {
+      "id": "q5",
+      "type": "match-pair",
+      "prompt": "Match each term to its meaning.",
+      "pairs": [
+        { "left": "Image", "right": "A read-only template used to create containers" },
+        { "left": "Container", "right": "A running, isolated instance of an image" },
+        { "left": "Registry", "right": "A service that stores and distributes images" },
+        { "left": "dockerd", "right": "The daemon that builds images and runs containers" }
+      ],
+      "explanation": "The image is the template, a container is a running instance, a registry stores images, and dockerd is the engine doing the work."
+    },
+    {
+      "id": "q6",
+      "type": "ordering",
+      "prompt": "You run `docker run nginx` and the image is not on your machine yet. Order what happens.",
+      "items": [
+        { "id": "send", "text": "The docker client sends the command to the daemon" },
+        { "id": "pull", "text": "The daemon pulls the nginx image from the registry" },
+        { "id": "create", "text": "The daemon creates a container from the image" },
+        { "id": "start", "text": "The container process starts running" }
+      ],
+      "answer": ["send", "pull", "create", "start"],
+      "explanation": "The client hands the command to the daemon, which pulls the missing image, creates a container from it, and starts the process."
+    }
+  ]
+}

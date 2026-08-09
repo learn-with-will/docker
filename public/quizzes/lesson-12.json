@@ -1,0 +1,80 @@
+{
+  "id": "quiz-lesson-12",
+  "lessonId": "lesson-12",
+  "title": "Compose in Depth",
+  "passingScore": 60,
+  "questions": [
+    {
+      "id": "q1",
+      "type": "single-choice",
+      "prompt": "What does a healthcheck do in Compose?",
+      "options": [
+        { "id": "a", "text": "It publishes the container's ports" },
+        { "id": "b", "text": "It runs a probe command periodically to report the container as healthy or unhealthy" },
+        { "id": "c", "text": "It restarts the host" },
+        { "id": "d", "text": "It builds the image" }
+      ],
+      "answer": "b",
+      "explanation": "A healthcheck runs a test command on an interval and marks the container healthy, unhealthy, or starting based on the result."
+    },
+    {
+      "id": "q2",
+      "type": "single-choice",
+      "prompt": "How do you make a web service wait until its database is truly ready?",
+      "options": [
+        { "id": "a", "text": "Use depends_on alone" },
+        { "id": "b", "text": "Give the database a healthcheck and set depends_on with condition: service_healthy on the web service" },
+        { "id": "c", "text": "Publish the database port" },
+        { "id": "d", "text": "Add a sleep to the database image" }
+      ],
+      "answer": "b",
+      "explanation": "depends_on alone only orders startup. Combined with a healthcheck and condition: service_healthy, the dependent service waits until the dependency reports healthy."
+    },
+    {
+      "id": "q3",
+      "type": "single-choice",
+      "prompt": "What are Compose profiles used for?",
+      "options": [
+        { "id": "a", "text": "Encrypting the Compose file" },
+        { "id": "b", "text": "Including a service only when its profile is activated, for optional tools or one-off jobs" },
+        { "id": "c", "text": "Setting the base image" },
+        { "id": "d", "text": "Publishing ports automatically" }
+      ],
+      "answer": "b",
+      "explanation": "A service with profiles: [\"debug\"] starts only when you activate that profile (docker compose --profile debug up), which suits optional debuggers, seeders, and migrations."
+    },
+    {
+      "id": "q4",
+      "type": "fill-blank",
+      "prompt": "To load environment variables into a service from a separate file, use the ______ key. (one word, with underscore)",
+      "answer": ["env_file", "env-file"],
+      "explanation": "env_file loads variables from a separate file, keeping configuration and secrets out of the committed Compose file."
+    },
+    {
+      "id": "q5",
+      "type": "single-choice",
+      "prompt": "What does `docker compose config` print?",
+      "options": [
+        { "id": "a", "text": "The Docker daemon logs" },
+        { "id": "b", "text": "The fully merged and interpolated configuration, so you can verify overrides and variables" },
+        { "id": "c", "text": "A list of images on Docker Hub" },
+        { "id": "d", "text": "The container's health status" }
+      ],
+      "answer": "b",
+      "explanation": "docker compose config resolves overrides and ${VAR} interpolation and prints the final configuration, which is invaluable for debugging multi-file setups."
+    },
+    {
+      "id": "q6",
+      "type": "multiple-choice",
+      "prompt": "Which statements about advanced Compose features are true? Select all that apply.",
+      "options": [
+        { "id": "a", "text": "Custom networks can isolate tiers so a frontend cannot reach a backend-only service" },
+        { "id": "b", "text": "Override files let you layer environment-specific changes on a shared base" },
+        { "id": "c", "text": "${WEB_PORT:-8080} substitutes WEB_PORT or defaults to 8080" },
+        { "id": "d", "text": "A healthcheck that only checks the process exists is a thorough readiness probe" }
+      ],
+      "answer": ["a", "b", "c"],
+      "explanation": "Networks isolate tiers, override files layer config, and ${VAR:-default} supplies a fallback. A probe that only checks the process is running is not a real readiness check."
+    }
+  ]
+}

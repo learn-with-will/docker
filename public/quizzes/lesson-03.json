@@ -1,0 +1,79 @@
+{
+  "id": "quiz-lesson-03",
+  "lessonId": "lesson-03",
+  "title": "Images, Tags & Docker Hub",
+  "passingScore": 60,
+  "questions": [
+    {
+      "id": "q1",
+      "type": "single-choice",
+      "prompt": "What is a Docker image made of?",
+      "options": [
+        { "id": "a", "text": "A single compressed file with no internal structure" },
+        { "id": "b", "text": "A stack of read-only layers, each a set of filesystem changes" },
+        { "id": "c", "text": "A running process and its memory" },
+        { "id": "d", "text": "A virtual machine disk image" }
+      ],
+      "answer": "b",
+      "explanation": "An image is a stack of read-only layers. Layers are shared across images and cached during builds, which saves space and time."
+    },
+    {
+      "id": "q2",
+      "type": "single-choice",
+      "prompt": "What is the difference between a tag and a digest?",
+      "options": [
+        { "id": "a", "text": "A tag is immutable; a digest can change" },
+        { "id": "b", "text": "A tag is a movable label; a digest is an immutable content hash of the exact image" },
+        { "id": "c", "text": "They are two words for the same thing" },
+        { "id": "d", "text": "A digest is only used for private images" }
+      ],
+      "answer": "b",
+      "explanation": "A tag like 1.27 or latest can be re-pointed to a new image. A digest (sha256 hash) always refers to the exact same image bytes."
+    },
+    {
+      "id": "q3",
+      "type": "single-choice",
+      "prompt": "Why is depending on the `latest` tag risky for reproducibility?",
+      "options": [
+        { "id": "a", "text": "latest images are always broken" },
+        { "id": "b", "text": "latest is not a fixed version; it is whatever was most recently tagged, so it can change silently" },
+        { "id": "c", "text": "latest images cannot be pulled" },
+        { "id": "d", "text": "latest always points to the oldest version" }
+      ],
+      "answer": "b",
+      "explanation": "latest is a movable label, not a version. The same reference can resolve to a different image over time, which undermines reproducibility."
+    },
+    {
+      "id": "q4",
+      "type": "fill-blank",
+      "prompt": "Docker's curated official images live in the special ______ namespace, which is why you can reference them by a bare name like nginx. (one word)",
+      "answer": ["library"],
+      "explanation": "Official images live in the library namespace, so nginx, library/nginx, and docker.io/library/nginx:latest all mean the same image."
+    },
+    {
+      "id": "q5",
+      "type": "multiple-choice",
+      "prompt": "Which are good practices when choosing and referencing images? Select all that apply.",
+      "options": [
+        { "id": "a", "text": "Pin an explicit version tag instead of relying on latest" },
+        { "id": "b", "text": "Pin a digest when you need byte-for-byte reproducibility" },
+        { "id": "c", "text": "Prefer official or verified base images" },
+        { "id": "d", "text": "Always use the newest random image with the most stars, regardless of publisher" }
+      ],
+      "answer": ["a", "b", "c"],
+      "explanation": "Pin versions or digests and prefer trusted (official/verified) images. Popularity alone is not a substitute for checking the publisher."
+    },
+    {
+      "id": "q6",
+      "type": "match-pair",
+      "prompt": "Match each part of docker.io/library/nginx:1.27 to what it is.",
+      "pairs": [
+        { "left": "docker.io", "right": "The registry host" },
+        { "left": "library", "right": "The namespace (official images)" },
+        { "left": "nginx", "right": "The repository name" },
+        { "left": "1.27", "right": "The tag (version label)" }
+      ],
+      "explanation": "A full reference is registry/namespace/repository:tag. Missing parts default to docker.io, library, and latest."
+    }
+  ]
+}

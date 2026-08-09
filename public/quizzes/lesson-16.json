@@ -1,0 +1,80 @@
+{
+  "id": "quiz-lesson-16",
+  "lessonId": "lesson-16",
+  "title": "BuildKit, Buildx & Multi-Platform Images",
+  "passingScore": 60,
+  "questions": [
+    {
+      "id": "q1",
+      "type": "single-choice",
+      "prompt": "What is BuildKit?",
+      "options": [
+        { "id": "a", "text": "A registry for storing images" },
+        { "id": "b", "text": "Docker's modern, default build engine with parallel stages, smarter caching, and features like cache mounts" },
+        { "id": "c", "text": "A container orchestration platform" },
+        { "id": "d", "text": "A logging driver" }
+      ],
+      "answer": "b",
+      "explanation": "BuildKit is the modern build engine, and it is the default in current Docker. It builds stages in parallel, caches more granularly, and supports mounts and build secrets."
+    },
+    {
+      "id": "q2",
+      "type": "single-choice",
+      "prompt": "What does adding `# syntax=docker/dockerfile:1` as the first line do?",
+      "options": [
+        { "id": "a", "text": "It publishes the image" },
+        { "id": "b", "text": "It tells BuildKit to use the current Dockerfile frontend, enabling modern features like RUN --mount" },
+        { "id": "c", "text": "It sets the base image" },
+        { "id": "d", "text": "It runs the container as non-root" }
+      ],
+      "answer": "b",
+      "explanation": "The syntax directive selects the current stable Dockerfile frontend, unlocking features such as cache mounts and build secrets regardless of Docker version."
+    },
+    {
+      "id": "q3",
+      "type": "single-choice",
+      "prompt": "Why build multi-platform images?",
+      "options": [
+        { "id": "a", "text": "To make images larger" },
+        { "id": "b", "text": "Because build and deploy machines can differ in CPU architecture (e.g. arm64 vs amd64), and one multi-platform image runs on each" },
+        { "id": "c", "text": "To avoid using a registry" },
+        { "id": "d", "text": "To disable the cache" }
+      ],
+      "answer": "b",
+      "explanation": "A single-architecture image will not run on a different architecture without emulation. A multi-platform image (a manifest list) provides the right build for each machine."
+    },
+    {
+      "id": "q4",
+      "type": "fill-blank",
+      "prompt": "The extended build command that manages builders and produces multi-platform images is docker ______. (one word)",
+      "answer": ["buildx"],
+      "explanation": "docker buildx, built on BuildKit, manages builders and can produce multi-platform images with --platform."
+    },
+    {
+      "id": "q5",
+      "type": "single-choice",
+      "prompt": "Why does a multi-platform buildx build usually require --push rather than loading locally?",
+      "options": [
+        { "id": "a", "text": "Because pushing is faster" },
+        { "id": "b", "text": "Because the local image store holds a single architecture, so the multi-platform manifest list is pushed to a registry instead" },
+        { "id": "c", "text": "Because buildx cannot build locally at all" },
+        { "id": "d", "text": "Because --push disables the cache" }
+      ],
+      "answer": "b",
+      "explanation": "The local store is single-architecture, so a multi-platform result cannot be loaded into it; you push the manifest list to a registry (or use --load for a single platform)."
+    },
+    {
+      "id": "q6",
+      "type": "single-choice",
+      "prompt": "What does a cache mount (RUN --mount=type=cache) do?",
+      "options": [
+        { "id": "a", "text": "It bakes the package cache into the image as a layer" },
+        { "id": "b", "text": "It persists a package manager's cache across builds without adding it to the image" },
+        { "id": "c", "text": "It publishes the container's ports" },
+        { "id": "d", "text": "It scans the image for vulnerabilities" }
+      ],
+      "answer": "b",
+      "explanation": "A cache mount keeps a download cache (pip, npm, apk) available across builds for speed, while keeping it out of the final image layers."
+    }
+  ]
+}

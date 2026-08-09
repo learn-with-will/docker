@@ -1,0 +1,79 @@
+{
+  "id": "quiz-lesson-08",
+  "lessonId": "lesson-08",
+  "title": "Configuration & the Container Lifecycle",
+  "passingScore": 60,
+  "questions": [
+    {
+      "id": "q1",
+      "type": "single-choice",
+      "prompt": "What is the difference between ARG and ENV?",
+      "options": [
+        { "id": "a", "text": "ARG is available at run time; ENV is only at build time" },
+        { "id": "b", "text": "ARG is a build-time variable that is gone at run time; ENV is baked into the image and available while the container runs" },
+        { "id": "c", "text": "They are identical" },
+        { "id": "d", "text": "Both are safe places to store secrets" }
+      ],
+      "answer": "b",
+      "explanation": "ARG exists only during the build and is not present in the running container. ENV is baked into the image and available to the process at run time."
+    },
+    {
+      "id": "q2",
+      "type": "single-choice",
+      "prompt": "What is the recommended way to make one image behave differently in dev vs production?",
+      "options": [
+        { "id": "a", "text": "Build a separate image per environment with the config hard-coded" },
+        { "id": "b", "text": "Pass configuration through environment variables at run time" },
+        { "id": "c", "text": "Edit the running container's files by hand" },
+        { "id": "d", "text": "Use a different base image each time" }
+      ],
+      "answer": "b",
+      "explanation": "Environment variables (-e or --env-file) let the same image run everywhere, with only the configuration changing — a core twelve-factor idea."
+    },
+    {
+      "id": "q3",
+      "type": "single-choice",
+      "prompt": "Which restart policy restarts a container after crashes and host reboots but respects a manual docker stop?",
+      "options": [
+        { "id": "a", "text": "no" },
+        { "id": "b", "text": "on-failure" },
+        { "id": "c", "text": "unless-stopped" },
+        { "id": "d", "text": "always-even-when-stopped" }
+      ],
+      "answer": "c",
+      "explanation": "unless-stopped behaves like always but does not restart the container if you deliberately stopped it."
+    },
+    {
+      "id": "q4",
+      "type": "fill-blank",
+      "prompt": "docker stop first sends the ______ signal to allow a graceful shutdown before forcing SIGKILL. (signal name)",
+      "answer": ["SIGTERM", "sigterm"],
+      "explanation": "docker stop sends SIGTERM first, then SIGKILL after a grace period (10 seconds by default) if the process has not exited."
+    },
+    {
+      "id": "q5",
+      "type": "multiple-choice",
+      "prompt": "Which statements are true about configuration and exit codes? Select all that apply.",
+      "options": [
+        { "id": "a", "text": "An exit code of 0 means the container exited successfully" },
+        { "id": "b", "text": "Secrets should not be passed via ARG or ENV expecting them to be hidden" },
+        { "id": "c", "text": "--env-file loads many environment variables from a file" },
+        { "id": "d", "text": "By default, a container that stops is automatically restarted" }
+      ],
+      "answer": ["a", "b", "c"],
+      "explanation": "0 means success, ARG/ENV are not safe for secrets, and --env-file loads variables in bulk. The default restart policy is 'no', so stopped containers stay stopped."
+    },
+    {
+      "id": "q6",
+      "type": "match-pair",
+      "prompt": "Match each restart policy to its behavior.",
+      "pairs": [
+        { "left": "no", "right": "Never restart (the default)" },
+        { "left": "on-failure", "right": "Restart only on a non-zero exit code" },
+        { "left": "always", "right": "Restart whenever it stops, including on reboot" },
+        { "left": "unless-stopped", "right": "Like always, but not after a manual stop" }
+      ],
+      "explanation": "The four policies range from never restarting to always restarting, with on-failure and unless-stopped covering the common middle-ground cases."
+    }
+  ]
+}

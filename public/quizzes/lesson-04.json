@@ -1,0 +1,80 @@
+{
+  "id": "quiz-lesson-04",
+  "lessonId": "lesson-04",
+  "title": "Managing Containers",
+  "passingScore": 60,
+  "questions": [
+    {
+      "id": "q1",
+      "type": "single-choice",
+      "prompt": "How should you read the flag `-p 8080:80`?",
+      "options": [
+        { "id": "a", "text": "container port 8080 maps to host port 80" },
+        { "id": "b", "text": "host port 8080 maps to container port 80" },
+        { "id": "c", "text": "both ports must always be identical" },
+        { "id": "d", "text": "it blocks port 8080 on the host" }
+      ],
+      "answer": "b",
+      "explanation": "The format is host:container. -p 8080:80 forwards traffic from port 8080 on your machine to port 80 inside the container."
+    },
+    {
+      "id": "q2",
+      "type": "single-choice",
+      "prompt": "Which command opens an interactive shell inside a running container named web?",
+      "options": [
+        { "id": "a", "text": "docker run -it web sh" },
+        { "id": "b", "text": "docker exec -it web sh" },
+        { "id": "c", "text": "docker logs -it web sh" },
+        { "id": "d", "text": "docker shell web" }
+      ],
+      "answer": "b",
+      "explanation": "docker exec runs a new command inside a running container; -it makes it interactive with a terminal. docker run would create a new container instead."
+    },
+    {
+      "id": "q3",
+      "type": "single-choice",
+      "prompt": "Why is docker exec usually preferred over docker attach for debugging?",
+      "options": [
+        { "id": "a", "text": "attach is faster but insecure" },
+        { "id": "b", "text": "exec starts a separate process, so leaving it does not stop the container, while attach connects to the main process where Ctrl+C can stop it" },
+        { "id": "c", "text": "attach cannot open a shell at all" },
+        { "id": "d", "text": "there is no difference" }
+      ],
+      "answer": "b",
+      "explanation": "exec launches a new process (like a shell); exiting it leaves the container running. attach connects to the main process, so Ctrl+C can terminate the whole container."
+    },
+    {
+      "id": "q4",
+      "type": "fill-blank",
+      "prompt": "To stream a container's output live, run docker ______ -f <container>. (one word)",
+      "answer": ["logs"],
+      "explanation": "docker logs -f follows the container's output, streaming new lines until you stop it with Ctrl+C."
+    },
+    {
+      "id": "q5",
+      "type": "multiple-choice",
+      "prompt": "Which statements about stopping and removing containers are true? Select all that apply.",
+      "options": [
+        { "id": "a", "text": "docker stop asks the process to shut down gracefully before forcing it" },
+        { "id": "b", "text": "docker rm removes a stopped container" },
+        { "id": "c", "text": "docker rm -f can remove a running container" },
+        { "id": "d", "text": "--rm keeps the container forever after it exits" }
+      ],
+      "answer": ["a", "b", "c"],
+      "explanation": "stop is graceful, rm removes a stopped container, and rm -f forces removal of a running one. --rm does the opposite of (d): it auto-removes the container on exit."
+    },
+    {
+      "id": "q6",
+      "type": "ordering",
+      "prompt": "Order these commands to run, inspect, and clean up a web server.",
+      "items": [
+        { "id": "run", "text": "docker run -d --name web -p 8080:80 nginx" },
+        { "id": "logs", "text": "docker logs web" },
+        { "id": "exec", "text": "docker exec -it web sh" },
+        { "id": "rm", "text": "docker rm -f web" }
+      ],
+      "answer": ["run", "logs", "exec", "rm"],
+      "explanation": "Start the container, read its logs, step inside to look around, then force-remove it when you are done."
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "id": "quiz-lesson-11",
+  "lessonId": "lesson-11",
+  "title": "Docker Compose: Multi-Container Apps",
+  "passingScore": 60,
+  "questions": [
+    {
+      "id": "q1",
+      "type": "single-choice",
+      "prompt": "What is Docker Compose used for?",
+      "options": [
+        { "id": "a", "text": "Building a single image faster" },
+        { "id": "b", "text": "Defining and running a multi-container application from one YAML file, managed as a unit" },
+        { "id": "c", "text": "Replacing the Docker daemon" },
+        { "id": "d", "text": "Scanning images for vulnerabilities" }
+      ],
+      "answer": "b",
+      "explanation": "Compose describes a multi-container app in compose.yaml and lets you start, stop, and manage all of it with commands like docker compose up and down."
+    },
+    {
+      "id": "q2",
+      "type": "single-choice",
+      "prompt": "How do services in a Compose project reach one another?",
+      "options": [
+        { "id": "a", "text": "By hard-coded IP addresses" },
+        { "id": "b", "text": "By service name over the network Compose creates for the project" },
+        { "id": "c", "text": "Only if every port is published to the host" },
+        { "id": "d", "text": "They cannot communicate" }
+      ],
+      "answer": "b",
+      "explanation": "Compose puts all services on a shared project network with DNS, so a service connects to another by its service name (for example, db)."
+    },
+    {
+      "id": "q3",
+      "type": "single-choice",
+      "prompt": "Should a modern Compose file include a top-level `version: \"3\"` key?",
+      "options": [
+        { "id": "a", "text": "Yes, it is required" },
+        { "id": "b", "text": "No, it is obsolete under the Compose Specification and should be omitted" },
+        { "id": "c", "text": "Only for databases" },
+        { "id": "d", "text": "Only when using build:" }
+      ],
+      "answer": "b",
+      "explanation": "The top-level version key is obsolete under the current Compose Specification. Compose warns if you include it; leave it out."
+    },
+    {
+      "id": "q4",
+      "type": "fill-blank",
+      "prompt": "The current Compose command is two words: docker ______ up. (one word)",
+      "answer": ["compose"],
+      "explanation": "Compose v2 is a plugin invoked as docker compose (with a space). The old standalone docker-compose (v1) is retired."
+    },
+    {
+      "id": "q5",
+      "type": "single-choice",
+      "prompt": "Does depends_on wait until the dependency is ready to accept connections?",
+      "options": [
+        { "id": "a", "text": "Yes, it always waits for full readiness" },
+        { "id": "b", "text": "No, it only controls start order; readiness needs a healthcheck and a condition" },
+        { "id": "c", "text": "Yes, but only for databases" },
+        { "id": "d", "text": "No, it has no effect at all" }
+      ],
+      "answer": "b",
+      "explanation": "depends_on controls the order services start, not whether a dependency is ready. Waiting for readiness requires a healthcheck plus condition: service_healthy."
+    },
+    {
+      "id": "q6",
+      "type": "multiple-choice",
+      "prompt": "Which statements about a Compose file and its commands are true? Select all that apply.",
+      "options": [
+        { "id": "a", "text": "A service can build from a Dockerfile or use a prebuilt image" },
+        { "id": "b", "text": "docker compose down removes the app's containers and network" },
+        { "id": "c", "text": "docker compose up --build rebuilds services that have a build section" },
+        { "id": "d", "text": "You must publish every service's port for the app to work" }
+      ],
+      "answer": ["a", "b", "c"],
+      "explanation": "Services can build or use an image, down tears the app down, and --build forces a rebuild. You only publish the ports you need reachable from the host."
+    }
+  ]
+}

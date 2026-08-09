@@ -1,0 +1,80 @@
+{
+  "id": "quiz-lesson-22",
+  "lessonId": "lesson-22",
+  "title": "Infrastructure as Code",
+  "passingScore": 60,
+  "questions": [
+    {
+      "id": "q1",
+      "type": "single-choice",
+      "prompt": "What is Infrastructure as Code (IaC)?",
+      "options": [
+        { "id": "a", "text": "Writing application business logic" },
+        { "id": "b", "text": "Managing infrastructure through machine-readable, version-controlled files instead of manual clicks or ad-hoc commands" },
+        { "id": "c", "text": "A type of container image" },
+        { "id": "d", "text": "A registry for storing servers" }
+      ],
+      "answer": "b",
+      "explanation": "IaC defines and manages infrastructure through version-controlled files, making it repeatable, reviewable, and recoverable."
+    },
+    {
+      "id": "q2",
+      "type": "single-choice",
+      "prompt": "What is the difference between declarative and imperative infrastructure?",
+      "options": [
+        { "id": "a", "text": "Declarative lists the steps; imperative lists the end state" },
+        { "id": "b", "text": "Declarative describes the desired end state and is idempotent; imperative specifies the ordered steps you run yourself" },
+        { "id": "c", "text": "They are the same" },
+        { "id": "d", "text": "Imperative is always safer" }
+      ],
+      "answer": "b",
+      "explanation": "Declarative definitions state the goal and let the tool reconcile to it (safe to re-apply); imperative definitions script the exact steps and order."
+    },
+    {
+      "id": "q3",
+      "type": "single-choice",
+      "prompt": "How should secrets be handled in IaC?",
+      "options": [
+        { "id": "a", "text": "Commit them in plain text so they are versioned" },
+        { "id": "b", "text": "Keep them out of the files and store them in a secrets manager, referencing them instead" },
+        { "id": "c", "text": "Email them to the team" },
+        { "id": "d", "text": "Bake them into the base image" }
+      ],
+      "answer": "b",
+      "explanation": "Configuration lives in code, but secrets must not sit in plain text in the repo; store them in a secrets manager (or platform secret mechanism) and reference them."
+    },
+    {
+      "id": "q4",
+      "type": "fill-blank",
+      "prompt": "When a live system diverges from its defined desired state, that gap is called configuration ______. (one word)",
+      "answer": ["drift"],
+      "explanation": "Configuration drift happens when manual, out-of-band changes make the running system differ from its definitions; declarative IaC and GitOps detect and correct it."
+    },
+    {
+      "id": "q5",
+      "type": "single-choice",
+      "prompt": "What is GitOps?",
+      "options": [
+        { "id": "a", "text": "A way to write Dockerfiles" },
+        { "id": "b", "text": "An approach where Git is the source of truth and an agent continuously reconciles the live system to match it" },
+        { "id": "c", "text": "A Git hosting service" },
+        { "id": "d", "text": "A container runtime" }
+      ],
+      "answer": "b",
+      "explanation": "In GitOps the desired state lives in Git; an automated agent reconciles the system to match, so changes are made via pull requests and drift is auto-corrected."
+    },
+    {
+      "id": "q6",
+      "type": "multiple-choice",
+      "prompt": "Which are benefits of Infrastructure as Code? Select all that apply.",
+      "options": [
+        { "id": "a", "text": "Repeatable environments from the same files" },
+        { "id": "b", "text": "Changes reviewed through pull requests" },
+        { "id": "c", "text": "Versioned, auditable history with easy rollback" },
+        { "id": "d", "text": "It removes the need to ever test changes" }
+      ],
+      "answer": ["a", "b", "c"],
+      "explanation": "IaC makes infrastructure repeatable, reviewable, and auditable. Definitions still need testing — a bad definition can break infrastructure like bad code."
+    }
+  ]
+}

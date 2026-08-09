@@ -1,0 +1,80 @@
+{
+  "id": "quiz-lesson-20",
+  "lessonId": "lesson-20",
+  "title": "Orchestration Concepts",
+  "passingScore": 60,
+  "questions": [
+    {
+      "id": "q1",
+      "type": "single-choice",
+      "prompt": "What is container orchestration?",
+      "options": [
+        { "id": "a", "text": "A tool for building images faster" },
+        { "id": "b", "text": "Software that manages containers across a cluster of machines — scheduling, scaling, self-healing, and more" },
+        { "id": "c", "text": "A registry for storing images" },
+        { "id": "d", "text": "A way to write Dockerfiles" }
+      ],
+      "answer": "b",
+      "explanation": "An orchestrator runs and manages containers across many machines, handling placement, scaling, self-healing, service discovery, and load balancing."
+    },
+    {
+      "id": "q2",
+      "type": "single-choice",
+      "prompt": "What is the desired-state model?",
+      "options": [
+        { "id": "a", "text": "You issue step-by-step imperative commands to start each container" },
+        { "id": "b", "text": "You declare the goal (e.g. 5 healthy replicas) and the orchestrator continuously reconciles reality to match it" },
+        { "id": "c", "text": "The orchestrator picks a random number of replicas" },
+        { "id": "d", "text": "You must manually restart failed containers" }
+      ],
+      "answer": "b",
+      "explanation": "Orchestrators are declarative: you state the desired state, and a control loop keeps correcting drift (crashes, node failures) to maintain it."
+    },
+    {
+      "id": "q3",
+      "type": "single-choice",
+      "prompt": "Why is plain Docker Compose not a substitute for an orchestrator?",
+      "options": [
+        { "id": "a", "text": "Compose cannot run more than one container" },
+        { "id": "b", "text": "Compose runs a multi-container app on a single host; it does not spread work across machines or reschedule after a node fails" },
+        { "id": "c", "text": "Compose does not support volumes" },
+        { "id": "d", "text": "Compose cannot use images" }
+      ],
+      "answer": "b",
+      "explanation": "Compose is great for one host, but it does not provide multi-host scheduling, cross-node self-healing, or autoscaling — that is what orchestrators add."
+    },
+    {
+      "id": "q4",
+      "type": "fill-blank",
+      "prompt": "An orchestrator automatically restarting crashed containers and rescheduling those from failed nodes is called ______. (hyphenated word)",
+      "answer": ["self-healing", "self healing"],
+      "explanation": "Self-healing restores the desired state by replacing failed containers and rescheduling workloads from dead nodes onto healthy ones."
+    },
+    {
+      "id": "q5",
+      "type": "single-choice",
+      "prompt": "How do Docker Swarm and Kubernetes compare at a high level?",
+      "options": [
+        { "id": "a", "text": "Swarm is the industry standard; Kubernetes is built into Docker" },
+        { "id": "b", "text": "Swarm is simpler and built into Docker; Kubernetes is more powerful, the industry standard, with a steeper learning curve" },
+        { "id": "c", "text": "They are identical" },
+        { "id": "d", "text": "Neither can self-heal" }
+      ],
+      "answer": "b",
+      "explanation": "Swarm is easy and built into Docker for small clusters; Kubernetes is far more powerful and the industry standard, but more complex."
+    },
+    {
+      "id": "q6",
+      "type": "multiple-choice",
+      "prompt": "Which capabilities do orchestrators typically provide? Select all that apply.",
+      "options": [
+        { "id": "a", "text": "Scheduling containers onto suitable nodes" },
+        { "id": "b", "text": "Scaling the number of replicas up or down" },
+        { "id": "c", "text": "Service discovery and load balancing across replicas" },
+        { "id": "d", "text": "Writing your application's business logic for you" }
+      ],
+      "answer": ["a", "b", "c"],
+      "explanation": "Orchestrators schedule, scale, self-heal, and provide service discovery and load balancing. They run your app; they do not write it."
+    }
+  ]
+}

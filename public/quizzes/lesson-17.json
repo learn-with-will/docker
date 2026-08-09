@@ -1,0 +1,80 @@
+{
+  "id": "quiz-lesson-17",
+  "lessonId": "lesson-17",
+  "title": "DevOps & the CI/CD Lifecycle",
+  "passingScore": 60,
+  "questions": [
+    {
+      "id": "q1",
+      "type": "single-choice",
+      "prompt": "What best describes DevOps?",
+      "options": [
+        { "id": "a", "text": "A single tool you install" },
+        { "id": "b", "text": "A culture and set of practices uniting development and operations through shared ownership, automation, and fast feedback" },
+        { "id": "c", "text": "A programming language" },
+        { "id": "d", "text": "A type of container" }
+      ],
+      "answer": "b",
+      "explanation": "DevOps is primarily a culture of shared ownership and fast feedback, supported by automation — not just a tool or product."
+    },
+    {
+      "id": "q2",
+      "type": "single-choice",
+      "prompt": "What is the difference between continuous delivery and continuous deployment?",
+      "options": [
+        { "id": "a", "text": "They are the same thing" },
+        { "id": "b", "text": "Continuous delivery keeps a human approval before the production deploy; continuous deployment deploys every passing change automatically" },
+        { "id": "c", "text": "Continuous delivery skips testing" },
+        { "id": "d", "text": "Continuous deployment never reaches production" }
+      ],
+      "answer": "b",
+      "explanation": "Both make passing changes releasable. Delivery keeps a manual gate before production; deployment removes that gate and ships automatically."
+    },
+    {
+      "id": "q3",
+      "type": "single-choice",
+      "prompt": "Why is a container image an ideal artifact for a CI/CD pipeline?",
+      "options": [
+        { "id": "a", "text": "Because it must be rebuilt for each environment" },
+        { "id": "b", "text": "Because it is immutable and versioned, so you build once and promote the exact same image from staging to production" },
+        { "id": "c", "text": "Because it stores configuration inside the image" },
+        { "id": "d", "text": "Because it cannot be pushed to a registry" }
+      ],
+      "answer": "b",
+      "explanation": "An image is an immutable, versioned artifact bundling app and dependencies, so the thing you tested is exactly the thing you deploy."
+    },
+    {
+      "id": "q4",
+      "type": "fill-blank",
+      "prompt": "The practice of merging small changes frequently with an automated build and test on each is called continuous ______. (one word)",
+      "answer": ["integration"],
+      "explanation": "Continuous integration merges changes often and runs automated build and tests to catch integration problems early."
+    },
+    {
+      "id": "q5",
+      "type": "multiple-choice",
+      "prompt": "Which twelve-factor habits help containers thrive in CI/CD? Select all that apply.",
+      "options": [
+        { "id": "a", "text": "Keep configuration in the environment, not baked into the image" },
+        { "id": "b", "text": "Keep processes stateless, storing state in backing services" },
+        { "id": "c", "text": "Write logs to stdout/stderr as event streams" },
+        { "id": "d", "text": "Hard-code production secrets into the image" }
+      ],
+      "answer": ["a", "b", "c"],
+      "explanation": "Config in the environment, stateless processes, and logs as streams all fit the container model. Baking secrets into the image is the opposite of good practice."
+    },
+    {
+      "id": "q6",
+      "type": "ordering",
+      "prompt": "Order the typical stages of a CI/CD pipeline.",
+      "items": [
+        { "id": "build", "text": "Build the project" },
+        { "id": "test", "text": "Run automated tests" },
+        { "id": "package", "text": "Package it as a container image and push to a registry" },
+        { "id": "deploy", "text": "Deploy and operate" }
+      ],
+      "answer": ["build", "test", "package", "deploy"],
+      "explanation": "After a commit triggers the pipeline, it builds, tests, packages/publishes the image, and then deploys and operates it."
+    }
+  ]
+}
