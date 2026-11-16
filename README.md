@@ -1,80 +1,43 @@
-# Docker & DevOps Learning Portal
+# Docker Learn
 
-A **frontend-only** Docker & DevOps course: read Markdown lessons, take quizzes, and
-track your progress — all in the browser. No sign-up, no backend.
+The content of the Docker course at <https://learn-with-will.github.io/docker/>: 96 short lessons ("bites") in 12 topics, each teaching one idea in 3–5 minutes, plus a bank of 162 quiz questions. It covers foundations (namespaces, cgroups, images vs containers, OCI standards, Docker architecture), container operations & CLI (lifecycle commands, exec, logs, port publishing, system cleanup), images and registries (layer immutability, digest validation, Docker Hub, GHCR, tagging strategies), Dockerfile authoring (WORKDIR, COPY, RUN, CMD, ENTRYPOINT, build context, ARG vs ENV), data persistence (named volumes, bind mounts, tmpfs, backup workflows), networking (bridge networks, user-defined DNS resolution, host networking, network isolation), advanced builds (BuildKit, layer caching, multi-stage builds, Distroless/Alpine, cache mounts, multi-arch buildx), Docker Compose (specification, multi-container orchestration, healthchecks, profiles), container hardening & security (non-root users, dropped Linux capabilities, read-only root filesystems, Trivy scanning, secrets hygiene), debugging & observability (resource constraints, log drivers, container health, Prometheus metrics, structured logs), CI/CD & production deployment (GitHub Actions, GHCR publishing, rolling updates, blue-green cutover, canary deployments), and orchestration, Kubernetes & IaC (orchestrator architecture, Pods, Deployments, Services, kubectl, declarative GitOps, capstone deployment).
 
-## What this is
+This repository holds **content only**. The site itself (lesson reader, quizzes, progress, optional sign-in) is the shared [course shell](https://github.com/learn-with-will/course-shell), which every course uses.
 
-The portal shell is built with React 19, Vite, TypeScript, React Router,
-Tailwind CSS v4, `marked`, and PrismJS. It renders a **24-lesson curriculum** covering
-Docker and the DevOps practices around it, from your first container to shipping and
-operating a containerized app. Every lesson is written in plain, welcoming English and
-verified against the official documentation (see **Sources** below).
-
-Progress, bookmarks, and quiz scores live in `localStorage` under
-`docker-learning-*` keys, so nothing leaves your machine.
-
-## Run it locally
-
-```bash
-npm install
-npm run dev      # start the dev server
-npm run build    # type-check + production build into dist/
-npm run preview  # serve the production build
+```text
+course.json              name, brand colours, home page copy, code languages
+content/topics.json      the 12 topics
+content/lessons/*.md     one bite per file
+content/legacy.json      old long-lesson URLs → the bites that replaced them
+quiz/questions.json      the question bank
 ```
 
-## How the content works
+## Working on the course
 
-The app is **data-driven** — adding a lesson needs no code changes:
+Clone the shell next to this folder, then run its commands with this folder as the argument:
 
-1. Write the lesson Markdown in `public/content/<level>/<slug>.md` with YAML front-matter.
-2. Add a matching entry to `public/content/course-manifest.json`.
-3. Add a quiz at `public/quizzes/lesson-NN.json`.
+```bash
+git clone https://github.com/learn-with-will/course-shell.git ../course-shell
+cd ../course-shell
+npm ci
+npm run dev -- ../docker                 # live preview at http://localhost:4200
+npm run validate -- ../docker --strict   # the check the deploy runs
+```
 
-> **Code fences** must declare one of the highlighted languages: `dockerfile`,
-> `bash`, `yaml`, `json`, or `text` (see `src/core/prism.ts`).
+Node 22.18 or later is required.
 
-## Curriculum
+## Adding a lesson
 
-**Beginner — Docker foundations:** what Docker & containers are · installing Docker &
-your first container · images, tags & Docker Hub · managing containers · your first
-Dockerfile · volumes & bind mounts · container networking · configuration & the
-container lifecycle.
+1. Create `content/lessons/<slug>.md` with front-matter (`slug`, `title`, `topic`, `kind`, `summary`, `tags`, `related`) and the standard sections.
+2. Add questions for it to `quiz/questions.json` with `"topic"` and `"lesson"`.
+3. Run `npm run validate -- ../docker --strict` from the shell folder.
 
-**Intermediate — building well & multi-service:** Dockerfile best practices & layer
-caching · multi-stage builds & small images · Docker Compose · Compose in depth ·
-registries & tagging · container security · logging, monitoring & debugging · BuildKit,
-Buildx & multi-platform images.
+The rules (length limits, which visual fits which kind of information, the diagram syntax) are in the shell's [CONTENT_GUIDE.md](https://github.com/learn-with-will/course-shell/blob/main/CONTENT_GUIDE.md).
 
-**Advanced — DevOps around Docker:** DevOps & the CI/CD lifecycle · CI/CD with GitHub
-Actions · deployment strategies · orchestration concepts · introduction to Kubernetes ·
-infrastructure as code · observability · a capstone that ties it all together.
+## Accuracy
 
-## Accuracy: no hallucination
+Facts and techniques are synthesized from official Docker documentation, OCI runtime specifications, Linux kernel cgroups and namespace documentation, CNCF best practices, and enterprise cloud-native production standards.
 
-Every command, flag, default, and behavior is verified against official documentation.
-The per-lesson authoring contract lives in `prompts/docker-authoring-prompt.md`, and the
-phase-by-phase overview in `prompts/docker-study-pathway.md`.
+## Deployment
 
-**Sources:**
-
-- **Docker documentation** — <https://docs.docker.com/> (Engine, CLI, Dockerfile
-  reference, volumes, networking, build).
-- **The Compose Specification** — <https://docs.docker.com/compose/> and
-  <https://compose-spec.io/>.
-- **Open Container Initiative** — <https://opencontainers.org/> (image & runtime specs).
-- **BuildKit** — <https://docs.docker.com/build/> and
-  <https://github.com/moby/buildkit>.
-- **Kubernetes documentation** — <https://kubernetes.io/docs/> (the intro lesson).
-- **GitHub Actions documentation** — <https://docs.github.com/actions> (the CI/CD lesson).
-- **The Twelve-Factor App** — <https://12factor.net/>.
-
-## Deploying
-
-Pushing to `main` triggers `.github/workflows/deploy.yml`, which builds with
-`BASE_PATH=/<repo>/` and publishes `dist/` to GitHub Pages.
-
----
-
-React 19 · Vite · TypeScript · React Router · Tailwind CSS v4 · marked · PrismJS ·
-localStorage.
+Pushing to `main` runs `.github/workflows/deploy.yml`, which calls the shell's reusable workflow: it validates this course in strict mode, builds it with the latest shell and publishes it to GitHub Pages. To pick up a shell change without a content change, run the workflow by hand from the Actions tab.

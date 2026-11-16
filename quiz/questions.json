@@ -1,0 +1,4083 @@
+[
+  {
+    "id": "foundations-01",
+    "topic": "foundations",
+    "lesson": "container-lifecycle-states",
+    "type": "single-choice",
+    "prompt": "What is the key difference between a container and a virtual machine?",
+    "explanation": "A container is an isolated process that shares the host kernel, so it is lightweight. A VM runs a full guest OS on a hypervisor, which is heavier.",
+    "options": [
+      {
+        "id": "a",
+        "text": "A container includes its own full operating system, a VM does not"
+      },
+      {
+        "id": "b",
+        "text": "A container shares the host's kernel and is an isolated process; a VM runs its own guest OS on a hypervisor"
+      },
+      {
+        "id": "c",
+        "text": "There is no difference; the words are interchangeable"
+      },
+      {
+        "id": "d",
+        "text": "A VM is always smaller and faster than a container"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "foundations-02",
+    "topic": "foundations",
+    "lesson": "containers-vs-vms",
+    "type": "single-choice",
+    "prompt": "Which statement correctly describes images and containers?",
+    "explanation": "An image is a read-only template. A container is a running instance created from an image, with a thin writable layer added on top. One image can produce many containers.",
+    "options": [
+      {
+        "id": "a",
+        "text": "An image is a running process; a container is a template"
+      },
+      {
+        "id": "b",
+        "text": "An image is a read-only template; a container is a running instance of that image"
+      },
+      {
+        "id": "c",
+        "text": "Each image can produce exactly one container"
+      },
+      {
+        "id": "d",
+        "text": "Containers are stored in registries; images are not"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "foundations-03",
+    "topic": "foundations",
+    "lesson": "docker-architecture",
+    "type": "multiple-choice",
+    "prompt": "Which of the following are parts of the Docker architecture? Select all that apply.",
+    "explanation": "The client talks to the daemon, which runs containers and pulls or pushes images to a registry. Docker runs locally; no remote cloud account is required.",
+    "options": [
+      {
+        "id": "a",
+        "text": "The docker command-line client"
+      },
+      {
+        "id": "b",
+        "text": "The dockerd daemon"
+      },
+      {
+        "id": "c",
+        "text": "A registry such as Docker Hub"
+      },
+      {
+        "id": "d",
+        "text": "A required cloud account that runs your containers remotely"
+      }
+    ],
+    "answer": [
+      "a",
+      "b",
+      "c"
+    ]
+  },
+  {
+    "id": "foundations-04",
+    "topic": "foundations",
+    "lesson": "docker-desktop-vs-engine",
+    "type": "fill-blank",
+    "prompt": "Because Docker builds images that follow the ______ standard, they also run on other compliant tools. (three-letter acronym)",
+    "explanation": "The Open Container Initiative (OCI) standardizes the image and runtime formats, which is what makes images portable across compliant tools.",
+    "answer": [
+      "OCI",
+      "oci"
+    ]
+  },
+  {
+    "id": "foundations-05",
+    "topic": "foundations",
+    "lesson": "namespaces-and-cgroups",
+    "type": "match-pair",
+    "prompt": "Match each term to its meaning.",
+    "explanation": "The image is the template, a container is a running instance, a registry stores images, and dockerd is the engine doing the work.",
+    "pairs": [
+      {
+        "left": "Image",
+        "right": "A read-only template used to create containers"
+      },
+      {
+        "left": "Container",
+        "right": "A running, isolated instance of an image"
+      },
+      {
+        "left": "Registry",
+        "right": "A service that stores and distributes images"
+      },
+      {
+        "left": "dockerd",
+        "right": "The daemon that builds images and runs containers"
+      }
+    ]
+  },
+  {
+    "id": "foundations-06",
+    "topic": "foundations",
+    "lesson": "oci-standards",
+    "type": "ordering",
+    "prompt": "You run `docker run nginx` and the image is not on your machine yet. Order what happens.",
+    "explanation": "The client hands the command to the daemon, which pulls the missing image, creates a container from it, and starts the process.",
+    "items": [
+      {
+        "id": "send",
+        "text": "The docker client sends the command to the daemon"
+      },
+      {
+        "id": "pull",
+        "text": "The daemon pulls the nginx image from the registry"
+      },
+      {
+        "id": "create",
+        "text": "The daemon creates a container from the image"
+      },
+      {
+        "id": "start",
+        "text": "The container process starts running"
+      }
+    ],
+    "answer": [
+      "send",
+      "pull",
+      "create",
+      "start"
+    ]
+  },
+  {
+    "id": "foundations-07",
+    "topic": "foundations",
+    "lesson": "running-first-container",
+    "type": "single-choice",
+    "prompt": "On macOS and Windows, how does Docker Desktop run Linux containers?",
+    "explanation": "macOS and Windows have no Linux kernel, so Docker Desktop runs Docker Engine inside a lightweight managed Linux VM. Linux containers run in that VM.",
+    "options": [
+      {
+        "id": "a",
+        "text": "It rewrites the containers to run natively on macOS or Windows"
+      },
+      {
+        "id": "b",
+        "text": "It runs Docker Engine inside a small managed Linux virtual machine"
+      },
+      {
+        "id": "c",
+        "text": "It requires you to install a separate Linux computer"
+      },
+      {
+        "id": "d",
+        "text": "It cannot run Linux containers at all"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "foundations-08",
+    "topic": "foundations",
+    "lesson": "what-is-a-container",
+    "type": "single-choice",
+    "prompt": "Why does `docker run hello-world` exit almost immediately?",
+    "explanation": "A container lives only as long as its main process. hello-world prints a message and its process finishes, so the container exits right away — that is expected.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Because the image failed to download"
+      },
+      {
+        "id": "b",
+        "text": "Because a container runs only as long as its main process, and hello-world's process just prints and ends"
+      },
+      {
+        "id": "c",
+        "text": "Because hello-world is broken"
+      },
+      {
+        "id": "d",
+        "text": "Because you forgot the -d flag"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "foundations-09",
+    "topic": "foundations",
+    "lesson": "container-lifecycle-states",
+    "type": "single-choice",
+    "prompt": "You ran a container and it is not shown by `docker ps`. How do you see it?",
+    "explanation": "docker ps shows only running containers. docker ps -a shows all of them, including stopped (exited) ones.",
+    "options": [
+      {
+        "id": "a",
+        "text": "docker ps -a, which lists all containers including exited ones"
+      },
+      {
+        "id": "b",
+        "text": "docker images, which lists containers"
+      },
+      {
+        "id": "c",
+        "text": "It is gone forever and cannot be seen"
+      },
+      {
+        "id": "d",
+        "text": "docker version"
+      }
+    ],
+    "answer": "a"
+  },
+  {
+    "id": "foundations-10",
+    "topic": "foundations",
+    "lesson": "containers-vs-vms",
+    "type": "fill-blank",
+    "prompt": "To run a container in the background instead of the foreground, add the ______ flag to docker run. (include the dash)",
+    "explanation": "-d (or --detach) runs the container detached, in the background, so it does not tie up your terminal.",
+    "answer": [
+      "-d",
+      "--detach"
+    ]
+  },
+  {
+    "id": "foundations-11",
+    "topic": "foundations",
+    "lesson": "docker-architecture",
+    "type": "multiple-choice",
+    "prompt": "Which statements about the container lifecycle are true? Select all that apply.",
+    "explanation": "An exited container persists (with its writable layer) until docker rm removes it, and docker start can restart it. The writable layer is not deleted on exit — only on removal.",
+    "options": [
+      {
+        "id": "a",
+        "text": "A stopped (exited) container still exists until you remove it"
+      },
+      {
+        "id": "b",
+        "text": "docker start can run a stopped container again"
+      },
+      {
+        "id": "c",
+        "text": "docker rm deletes a container"
+      },
+      {
+        "id": "d",
+        "text": "Once a container exits, its writable layer is instantly deleted"
+      }
+    ],
+    "answer": [
+      "a",
+      "b",
+      "c"
+    ]
+  },
+  {
+    "id": "foundations-12",
+    "topic": "foundations",
+    "lesson": "docker-desktop-vs-engine",
+    "type": "ordering",
+    "prompt": "Order these commands to run nginx in the background and then clean it up.",
+    "explanation": "Start it detached, confirm it is running, stop the process, then remove the container.",
+    "items": [
+      {
+        "id": "run",
+        "text": "docker run -d --name site nginx"
+      },
+      {
+        "id": "ps",
+        "text": "docker ps"
+      },
+      {
+        "id": "stop",
+        "text": "docker stop site"
+      },
+      {
+        "id": "rm",
+        "text": "docker rm site"
+      }
+    ],
+    "answer": [
+      "run",
+      "ps",
+      "stop",
+      "rm"
+    ]
+  },
+  {
+    "id": "container-management-01",
+    "topic": "container-management",
+    "lesson": "clean-system-prune",
+    "type": "single-choice",
+    "prompt": "How should you read the flag `-p 8080:80`?",
+    "explanation": "The format is host:container. -p 8080:80 forwards traffic from port 8080 on your machine to port 80 inside the container.",
+    "options": [
+      {
+        "id": "a",
+        "text": "container port 8080 maps to host port 80"
+      },
+      {
+        "id": "b",
+        "text": "host port 8080 maps to container port 80"
+      },
+      {
+        "id": "c",
+        "text": "both ports must always be identical"
+      },
+      {
+        "id": "d",
+        "text": "it blocks port 8080 on the host"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "container-management-02",
+    "topic": "container-management",
+    "lesson": "container-logs",
+    "type": "single-choice",
+    "prompt": "Which command opens an interactive shell inside a running container named web?",
+    "explanation": "docker exec runs a new command inside a running container; -it makes it interactive with a terminal. docker run would create a new container instead.",
+    "options": [
+      {
+        "id": "a",
+        "text": "docker run -it web sh"
+      },
+      {
+        "id": "b",
+        "text": "docker exec -it web sh"
+      },
+      {
+        "id": "c",
+        "text": "docker logs -it web sh"
+      },
+      {
+        "id": "d",
+        "text": "docker shell web"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "container-management-03",
+    "topic": "container-management",
+    "lesson": "container-restart-policies",
+    "type": "single-choice",
+    "prompt": "Why is docker exec usually preferred over docker attach for debugging?",
+    "explanation": "exec launches a new process (like a shell); exiting it leaves the container running. attach connects to the main process, so Ctrl+C can terminate the whole container.",
+    "options": [
+      {
+        "id": "a",
+        "text": "attach is faster but insecure"
+      },
+      {
+        "id": "b",
+        "text": "exec starts a separate process, so leaving it does not stop the container, while attach connects to the main process where Ctrl+C can stop it"
+      },
+      {
+        "id": "c",
+        "text": "attach cannot open a shell at all"
+      },
+      {
+        "id": "d",
+        "text": "there is no difference"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "container-management-04",
+    "topic": "container-management",
+    "lesson": "docker-run-flags",
+    "type": "fill-blank",
+    "prompt": "To stream a container's output live, run docker ______ -f <container>. (one word)",
+    "explanation": "docker logs -f follows the container's output, streaming new lines until you stop it with Ctrl+C.",
+    "answer": [
+      "logs"
+    ]
+  },
+  {
+    "id": "container-management-05",
+    "topic": "container-management",
+    "lesson": "executing-commands",
+    "type": "multiple-choice",
+    "prompt": "Which statements about stopping and removing containers are true? Select all that apply.",
+    "explanation": "stop is graceful, rm removes a stopped container, and rm -f forces removal of a running one. --rm does the opposite of (d): it auto-removes the container on exit.",
+    "options": [
+      {
+        "id": "a",
+        "text": "docker stop asks the process to shut down gracefully before forcing it"
+      },
+      {
+        "id": "b",
+        "text": "docker rm removes a stopped container"
+      },
+      {
+        "id": "c",
+        "text": "docker rm -f can remove a running container"
+      },
+      {
+        "id": "d",
+        "text": "--rm keeps the container forever after it exits"
+      }
+    ],
+    "answer": [
+      "a",
+      "b",
+      "c"
+    ]
+  },
+  {
+    "id": "container-management-06",
+    "topic": "container-management",
+    "lesson": "lifecycle-commands",
+    "type": "ordering",
+    "prompt": "Order these commands to run, inspect, and clean up a web server.",
+    "explanation": "Start the container, read its logs, step inside to look around, then force-remove it when you are done.",
+    "items": [
+      {
+        "id": "run",
+        "text": "docker run -d --name web -p 8080:80 nginx"
+      },
+      {
+        "id": "logs",
+        "text": "docker logs web"
+      },
+      {
+        "id": "exec",
+        "text": "docker exec -it web sh"
+      },
+      {
+        "id": "rm",
+        "text": "docker rm -f web"
+      }
+    ],
+    "answer": [
+      "run",
+      "logs",
+      "exec",
+      "rm"
+    ]
+  },
+  {
+    "id": "container-management-07",
+    "topic": "container-management",
+    "lesson": "port-publishing",
+    "type": "single-choice",
+    "prompt": "What is the difference between ARG and ENV?",
+    "explanation": "ARG exists only during the build and is not present in the running container. ENV is baked into the image and available to the process at run time.",
+    "options": [
+      {
+        "id": "a",
+        "text": "ARG is available at run time; ENV is only at build time"
+      },
+      {
+        "id": "b",
+        "text": "ARG is a build-time variable that is gone at run time; ENV is baked into the image and available while the container runs"
+      },
+      {
+        "id": "c",
+        "text": "They are identical"
+      },
+      {
+        "id": "d",
+        "text": "Both are safe places to store secrets"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "container-management-08",
+    "topic": "container-management",
+    "lesson": "removing-containers",
+    "type": "single-choice",
+    "prompt": "What is the recommended way to make one image behave differently in dev vs production?",
+    "explanation": "Environment variables (-e or --env-file) let the same image run everywhere, with only the configuration changing — a core twelve-factor idea.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Build a separate image per environment with the config hard-coded"
+      },
+      {
+        "id": "b",
+        "text": "Pass configuration through environment variables at run time"
+      },
+      {
+        "id": "c",
+        "text": "Edit the running container's files by hand"
+      },
+      {
+        "id": "d",
+        "text": "Use a different base image each time"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "container-management-09",
+    "topic": "container-management",
+    "lesson": "clean-system-prune",
+    "type": "single-choice",
+    "prompt": "Which restart policy restarts a container after crashes and host reboots but respects a manual docker stop?",
+    "explanation": "unless-stopped behaves like always but does not restart the container if you deliberately stopped it.",
+    "options": [
+      {
+        "id": "a",
+        "text": "no"
+      },
+      {
+        "id": "b",
+        "text": "on-failure"
+      },
+      {
+        "id": "c",
+        "text": "unless-stopped"
+      },
+      {
+        "id": "d",
+        "text": "always-even-when-stopped"
+      }
+    ],
+    "answer": "c"
+  },
+  {
+    "id": "container-management-10",
+    "topic": "container-management",
+    "lesson": "container-logs",
+    "type": "fill-blank",
+    "prompt": "docker stop first sends the ______ signal to allow a graceful shutdown before forcing SIGKILL. (signal name)",
+    "explanation": "docker stop sends SIGTERM first, then SIGKILL after a grace period (10 seconds by default) if the process has not exited.",
+    "answer": [
+      "SIGTERM",
+      "sigterm"
+    ]
+  },
+  {
+    "id": "container-management-11",
+    "topic": "container-management",
+    "lesson": "container-restart-policies",
+    "type": "multiple-choice",
+    "prompt": "Which statements are true about configuration and exit codes? Select all that apply.",
+    "explanation": "0 means success, ARG/ENV are not safe for secrets, and --env-file loads variables in bulk. The default restart policy is 'no', so stopped containers stay stopped.",
+    "options": [
+      {
+        "id": "a",
+        "text": "An exit code of 0 means the container exited successfully"
+      },
+      {
+        "id": "b",
+        "text": "Secrets should not be passed via ARG or ENV expecting them to be hidden"
+      },
+      {
+        "id": "c",
+        "text": "--env-file loads many environment variables from a file"
+      },
+      {
+        "id": "d",
+        "text": "By default, a container that stops is automatically restarted"
+      }
+    ],
+    "answer": [
+      "a",
+      "b",
+      "c"
+    ]
+  },
+  {
+    "id": "container-management-12",
+    "topic": "container-management",
+    "lesson": "docker-run-flags",
+    "type": "match-pair",
+    "prompt": "Match each restart policy to its behavior.",
+    "explanation": "The four policies range from never restarting to always restarting, with on-failure and unless-stopped covering the common middle-ground cases.",
+    "pairs": [
+      {
+        "left": "no",
+        "right": "Never restart (the default)"
+      },
+      {
+        "left": "on-failure",
+        "right": "Restart only on a non-zero exit code"
+      },
+      {
+        "left": "always",
+        "right": "Restart whenever it stops, including on reboot"
+      },
+      {
+        "left": "unless-stopped",
+        "right": "Like always, but not after a manual stop"
+      }
+    ]
+  },
+  {
+    "id": "images-and-registries-01",
+    "topic": "images-and-registries",
+    "lesson": "docker-hub",
+    "type": "single-choice",
+    "prompt": "What is a Docker image made of?",
+    "explanation": "An image is a stack of read-only layers. Layers are shared across images and cached during builds, which saves space and time.",
+    "options": [
+      {
+        "id": "a",
+        "text": "A single compressed file with no internal structure"
+      },
+      {
+        "id": "b",
+        "text": "A stack of read-only layers, each a set of filesystem changes"
+      },
+      {
+        "id": "c",
+        "text": "A running process and its memory"
+      },
+      {
+        "id": "d",
+        "text": "A virtual machine disk image"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "images-and-registries-02",
+    "topic": "images-and-registries",
+    "lesson": "github-container-registry",
+    "type": "single-choice",
+    "prompt": "What is the difference between a tag and a digest?",
+    "explanation": "A tag like 1.27 or latest can be re-pointed to a new image. A digest (sha256 hash) always refers to the exact same image bytes.",
+    "options": [
+      {
+        "id": "a",
+        "text": "A tag is immutable; a digest can change"
+      },
+      {
+        "id": "b",
+        "text": "A tag is a movable label; a digest is an immutable content hash of the exact image"
+      },
+      {
+        "id": "c",
+        "text": "They are two words for the same thing"
+      },
+      {
+        "id": "d",
+        "text": "A digest is only used for private images"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "images-and-registries-03",
+    "topic": "images-and-registries",
+    "lesson": "image-layers",
+    "type": "single-choice",
+    "prompt": "Why is depending on the `latest` tag risky for reproducibility?",
+    "explanation": "latest is a movable label, not a version. The same reference can resolve to a different image over time, which undermines reproducibility.",
+    "options": [
+      {
+        "id": "a",
+        "text": "latest images are always broken"
+      },
+      {
+        "id": "b",
+        "text": "latest is not a fixed version; it is whatever was most recently tagged, so it can change silently"
+      },
+      {
+        "id": "c",
+        "text": "latest images cannot be pulled"
+      },
+      {
+        "id": "d",
+        "text": "latest always points to the oldest version"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "images-and-registries-04",
+    "topic": "images-and-registries",
+    "lesson": "image-retention-and-cleanup",
+    "type": "fill-blank",
+    "prompt": "Docker's curated official images live in the special ______ namespace, which is why you can reference them by a bare name like nginx. (one word)",
+    "explanation": "Official images live in the library namespace, so nginx, library/nginx, and docker.io/library/nginx:latest all mean the same image.",
+    "answer": [
+      "library"
+    ]
+  },
+  {
+    "id": "images-and-registries-05",
+    "topic": "images-and-registries",
+    "lesson": "private-registries-auth",
+    "type": "multiple-choice",
+    "prompt": "Which are good practices when choosing and referencing images? Select all that apply.",
+    "explanation": "Pin versions or digests and prefer trusted (official/verified) images. Popularity alone is not a substitute for checking the publisher.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Pin an explicit version tag instead of relying on latest"
+      },
+      {
+        "id": "b",
+        "text": "Pin a digest when you need byte-for-byte reproducibility"
+      },
+      {
+        "id": "c",
+        "text": "Prefer official or verified base images"
+      },
+      {
+        "id": "d",
+        "text": "Always use the newest random image with the most stars, regardless of publisher"
+      }
+    ],
+    "answer": [
+      "a",
+      "b",
+      "c"
+    ]
+  },
+  {
+    "id": "images-and-registries-06",
+    "topic": "images-and-registries",
+    "lesson": "pulling-and-inspecting-images",
+    "type": "match-pair",
+    "prompt": "Match each part of docker.io/library/nginx:1.27 to what it is.",
+    "explanation": "A full reference is registry/namespace/repository:tag. Missing parts default to docker.io, library, and latest.",
+    "pairs": [
+      {
+        "left": "docker.io",
+        "right": "The registry host"
+      },
+      {
+        "left": "library",
+        "right": "The namespace (official images)"
+      },
+      {
+        "left": "nginx",
+        "right": "The repository name"
+      },
+      {
+        "left": "1.27",
+        "right": "The tag (version label)"
+      }
+    ]
+  },
+  {
+    "id": "images-and-registries-07",
+    "topic": "images-and-registries",
+    "lesson": "tagging-strategies",
+    "type": "single-choice",
+    "prompt": "What is a container registry?",
+    "explanation": "A registry stores and distributes images. Docker Hub is the default public registry; GHCR and cloud/self-hosted registries are common alternatives.",
+    "options": [
+      {
+        "id": "a",
+        "text": "A tool that builds images"
+      },
+      {
+        "id": "b",
+        "text": "A server that stores and distributes images, which you push to and pull from"
+      },
+      {
+        "id": "c",
+        "text": "A type of container network"
+      },
+      {
+        "id": "d",
+        "text": "The writable layer of a container"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "images-and-registries-08",
+    "topic": "images-and-registries",
+    "lesson": "tags-and-digests",
+    "type": "single-choice",
+    "prompt": "To push an image to GitHub Container Registry, how must it be named?",
+    "explanation": "A registry-qualified name like ghcr.io/owner/repo:tag tells docker push which registry and repository to upload to.",
+    "options": [
+      {
+        "id": "a",
+        "text": "hello:latest"
+      },
+      {
+        "id": "b",
+        "text": "ghcr.io/<owner>/<repo>:<tag>"
+      },
+      {
+        "id": "c",
+        "text": "github.com/<owner>/<repo>"
+      },
+      {
+        "id": "d",
+        "text": "docker.io/hello"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "images-and-registries-09",
+    "topic": "images-and-registries",
+    "lesson": "docker-hub",
+    "type": "single-choice",
+    "prompt": "Does docker tag copy the image?",
+    "explanation": "docker tag adds an additional reference to an existing image without copying it. One image can carry many tags simultaneously.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Yes, it makes a full duplicate"
+      },
+      {
+        "id": "b",
+        "text": "No, it only adds another name pointing at the same image"
+      },
+      {
+        "id": "c",
+        "text": "Only for images larger than 1 GB"
+      },
+      {
+        "id": "d",
+        "text": "Only when pushing to Docker Hub"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "images-and-registries-10",
+    "topic": "images-and-registries",
+    "lesson": "github-container-registry",
+    "type": "fill-blank",
+    "prompt": "The strongest way to guarantee you deploy an exact, unchanging image is to reference it by its ______. (one word)",
+    "explanation": "A digest (repo@sha256:...) is immutable and always resolves to the identical image bytes, even if tags are later moved.",
+    "answer": [
+      "digest"
+    ]
+  },
+  {
+    "id": "images-and-registries-11",
+    "topic": "images-and-registries",
+    "lesson": "image-layers",
+    "type": "multiple-choice",
+    "prompt": "Which are good tagging or registry practices? Select all that apply.",
+    "explanation": "Pin versions, add SHA tags for traceability, and use scoped tokens safely. latest is a moving label and should not be the production source of truth.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Tag releases with a specific semantic version"
+      },
+      {
+        "id": "b",
+        "text": "Add a git-SHA tag in CI for traceability"
+      },
+      {
+        "id": "c",
+        "text": "Authenticate with a scoped token passed via --password-stdin"
+      },
+      {
+        "id": "d",
+        "text": "Deploy :latest to production as the source of truth"
+      }
+    ],
+    "answer": [
+      "a",
+      "b",
+      "c"
+    ]
+  },
+  {
+    "id": "images-and-registries-12",
+    "topic": "images-and-registries",
+    "lesson": "image-retention-and-cleanup",
+    "type": "ordering",
+    "prompt": "Order the steps to publish a local image to a registry.",
+    "explanation": "Authenticate, give the image a registry-qualified name, push it, and then it can be pulled by others.",
+    "items": [
+      {
+        "id": "login",
+        "text": "docker login the target registry"
+      },
+      {
+        "id": "tag",
+        "text": "docker tag the image with a registry-qualified name"
+      },
+      {
+        "id": "push",
+        "text": "docker push the tagged image"
+      },
+      {
+        "id": "pull",
+        "text": "A teammate pulls it by that name or digest"
+      }
+    ],
+    "answer": [
+      "login",
+      "tag",
+      "push",
+      "pull"
+    ]
+  },
+  {
+    "id": "dockerfiles-01",
+    "topic": "dockerfiles",
+    "lesson": "arg-vs-env",
+    "type": "single-choice",
+    "prompt": "What is the difference between RUN and CMD?",
+    "explanation": "RUN executes during the build and its result becomes an image layer. CMD sets the default command that runs each time a container starts from the image.",
+    "options": [
+      {
+        "id": "a",
+        "text": "RUN runs when the container starts; CMD runs at build time"
+      },
+      {
+        "id": "b",
+        "text": "RUN executes at build time and is baked into the image; CMD is the default command run when a container starts"
+      },
+      {
+        "id": "c",
+        "text": "They are identical"
+      },
+      {
+        "id": "d",
+        "text": "CMD can appear many times and all of them run"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "dockerfiles-02",
+    "topic": "dockerfiles",
+    "lesson": "build-context-dockerignore",
+    "type": "single-choice",
+    "prompt": "Does the EXPOSE instruction publish a port so your machine can reach the container?",
+    "explanation": "EXPOSE is documentation/metadata only. To actually reach the container's port from your machine you publish it with -p host:container at run time.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Yes, EXPOSE opens the port to the host"
+      },
+      {
+        "id": "b",
+        "text": "No, EXPOSE only documents the port; you still publish it at run time with -p"
+      },
+      {
+        "id": "c",
+        "text": "Yes, but only for port 80"
+      },
+      {
+        "id": "d",
+        "text": "No, EXPOSE disables the port"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "dockerfiles-03",
+    "topic": "dockerfiles",
+    "lesson": "cmd-vs-entrypoint",
+    "type": "single-choice",
+    "prompt": "In `docker build -t mysite:1.0 .`, what does the trailing dot mean?",
+    "explanation": "The dot is the build context: the directory Docker packages and sends to the daemon. COPY can only copy files inside this context.",
+    "options": [
+      {
+        "id": "a",
+        "text": "It hides the build output"
+      },
+      {
+        "id": "b",
+        "text": "It is the build context — the directory sent to the daemon that COPY reads from"
+      },
+      {
+        "id": "c",
+        "text": "It means 'use the latest tag'"
+      },
+      {
+        "id": "d",
+        "text": "It is optional decoration"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "dockerfiles-04",
+    "topic": "dockerfiles",
+    "lesson": "dockerfile-anatomy",
+    "type": "fill-blank",
+    "prompt": "The file that lists paths to exclude from the build context is called ______. (filename)",
+    "explanation": "A .dockerignore file keeps files like .git, node_modules, and .env out of the build context, making builds faster and images cleaner.",
+    "answer": [
+      ".dockerignore",
+      "dockerignore"
+    ]
+  },
+  {
+    "id": "dockerfiles-05",
+    "topic": "dockerfiles",
+    "lesson": "dockerfile-instruction-reference",
+    "type": "single-choice",
+    "prompt": "Why is the exec form CMD [\"node\", \"server.js\"] preferred over the shell form CMD node server.js?",
+    "explanation": "The exec (JSON-array) form runs the process directly, so it receives Unix signals. The shell form wraps the command in /bin/sh -c, which can swallow SIGTERM and slow down graceful stops.",
+    "options": [
+      {
+        "id": "a",
+        "text": "It is shorter to type"
+      },
+      {
+        "id": "b",
+        "text": "It runs the program directly so it receives signals like SIGTERM, allowing docker stop to shut it down cleanly"
+      },
+      {
+        "id": "c",
+        "text": "The shell form is not valid Dockerfile syntax"
+      },
+      {
+        "id": "d",
+        "text": "The exec form runs faster at build time"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "dockerfiles-06",
+    "topic": "dockerfiles",
+    "lesson": "environment-files",
+    "type": "ordering",
+    "prompt": "Order these Dockerfile instructions as they should typically appear for a simple app.",
+    "explanation": "Start from a base image, set the working directory, copy your files in, then declare the default command to run at container start.",
+    "items": [
+      {
+        "id": "from",
+        "text": "FROM python:3.13-slim"
+      },
+      {
+        "id": "workdir",
+        "text": "WORKDIR /app"
+      },
+      {
+        "id": "copy",
+        "text": "COPY . ."
+      },
+      {
+        "id": "cmd",
+        "text": "CMD [\"python\", \"-m\", \"http.server\", \"8000\"]"
+      }
+    ],
+    "answer": [
+      "from",
+      "workdir",
+      "copy",
+      "cmd"
+    ]
+  },
+  {
+    "id": "dockerfiles-07",
+    "topic": "dockerfiles",
+    "lesson": "exec-vs-shell-form",
+    "type": "single-choice",
+    "prompt": "When one Dockerfile layer's cache is invalidated, what happens to the instructions after it?",
+    "explanation": "A cache miss cascades: once a layer changes, no layer below it can be reused, so all subsequent instructions run again.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Nothing; only that one layer rebuilds"
+      },
+      {
+        "id": "b",
+        "text": "Every layer after it is rebuilt too"
+      },
+      {
+        "id": "c",
+        "text": "The build fails"
+      },
+      {
+        "id": "d",
+        "text": "The layers below are skipped entirely"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "dockerfiles-08",
+    "topic": "dockerfiles",
+    "lesson": "stop-signals-and-exit-codes",
+    "type": "single-choice",
+    "prompt": "Why copy the dependency manifest and install dependencies before copying the rest of the source?",
+    "explanation": "Because a cache miss cascades, putting the rarely-changing dependency install above the frequently-changing source keeps the expensive install layer cached.",
+    "options": [
+      {
+        "id": "a",
+        "text": "It is required syntax"
+      },
+      {
+        "id": "b",
+        "text": "Dependencies change less often, so that layer stays cached across code edits and installs are skipped"
+      },
+      {
+        "id": "c",
+        "text": "It makes the image larger on purpose"
+      },
+      {
+        "id": "d",
+        "text": "It disables the build cache"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "dockerfiles-09",
+    "topic": "dockerfiles",
+    "lesson": "arg-vs-env",
+    "type": "single-choice",
+    "prompt": "Why combine apt-get install and the cleanup of package lists into a single RUN?",
+    "explanation": "Cleaning up in a later RUN cannot shrink the image, because the earlier layer already contains the files. Doing it in the same RUN keeps them out.",
+    "options": [
+      {
+        "id": "a",
+        "text": "It is the only valid syntax"
+      },
+      {
+        "id": "b",
+        "text": "Each RUN is a layer, so cleaning up in the same RUN keeps the removed files out of the image"
+      },
+      {
+        "id": "c",
+        "text": "It runs faster at container start"
+      },
+      {
+        "id": "d",
+        "text": "It publishes the ports automatically"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "dockerfiles-10",
+    "topic": "dockerfiles",
+    "lesson": "build-context-dockerignore",
+    "type": "fill-blank",
+    "prompt": "The instruction that sets the fixed executable a container always runs is ______. (one word)",
+    "explanation": "ENTRYPOINT fixes the program that runs; CMD supplies default arguments that are easy to override at docker run.",
+    "answer": [
+      "ENTRYPOINT",
+      "entrypoint"
+    ]
+  },
+  {
+    "id": "dockerfiles-11",
+    "topic": "dockerfiles",
+    "lesson": "cmd-vs-entrypoint",
+    "type": "multiple-choice",
+    "prompt": "Which are good Dockerfile practices? Select all that apply.",
+    "explanation": "Pin versions, use a .dockerignore, and order stable-before-volatile. Copying source before installing deps defeats the cache.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Pin base image tags instead of using latest"
+      },
+      {
+        "id": "b",
+        "text": "Ship a .dockerignore to keep the context small and safe"
+      },
+      {
+        "id": "c",
+        "text": "Place volatile steps (copying source) after stable ones (installing deps)"
+      },
+      {
+        "id": "d",
+        "text": "Copy all source first, then install dependencies"
+      }
+    ],
+    "answer": [
+      "a",
+      "b",
+      "c"
+    ]
+  },
+  {
+    "id": "dockerfiles-12",
+    "topic": "dockerfiles",
+    "lesson": "dockerfile-anatomy",
+    "type": "single-choice",
+    "prompt": "Given ENTRYPOINT [\"python\", \"-m\", \"http.server\"] and CMD [\"8000\"], what does `docker run img 9000` do?",
+    "explanation": "Arguments after the image override CMD but not ENTRYPOINT, so the server runs on 9000 while the fixed program stays python -m http.server.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Fails, because you cannot pass arguments"
+      },
+      {
+        "id": "b",
+        "text": "Runs python -m http.server 9000, overriding the CMD default while keeping the ENTRYPOINT"
+      },
+      {
+        "id": "c",
+        "text": "Ignores 9000 and serves on 8000"
+      },
+      {
+        "id": "d",
+        "text": "Replaces the whole command with 9000"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "storage-and-volumes-01",
+    "topic": "storage-and-volumes",
+    "lesson": "bind-mounts",
+    "type": "single-choice",
+    "prompt": "What happens to files written to a container's writable layer when you run docker rm?",
+    "explanation": "The writable layer is scratch space tied to the container. Removing the container deletes it, so durable data must live in a volume or bind mount.",
+    "options": [
+      {
+        "id": "a",
+        "text": "They are automatically moved to a volume"
+      },
+      {
+        "id": "b",
+        "text": "They are deleted along with the container"
+      },
+      {
+        "id": "c",
+        "text": "They are pushed to the registry"
+      },
+      {
+        "id": "d",
+        "text": "They stay on the host forever"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "storage-and-volumes-02",
+    "topic": "storage-and-volumes",
+    "lesson": "named-volumes",
+    "type": "single-choice",
+    "prompt": "Which storage type is the recommended default for persisting a database's data?",
+    "explanation": "Named volumes are managed by Docker and persist independently of any container, making them the default choice for application and database data.",
+    "options": [
+      {
+        "id": "a",
+        "text": "A named volume"
+      },
+      {
+        "id": "b",
+        "text": "The container's writable layer"
+      },
+      {
+        "id": "c",
+        "text": "A tmpfs mount"
+      },
+      {
+        "id": "d",
+        "text": "The image's read-only layers"
+      }
+    ],
+    "answer": "a"
+  },
+  {
+    "id": "storage-and-volumes-03",
+    "topic": "storage-and-volumes",
+    "lesson": "storage-best-practices",
+    "type": "single-choice",
+    "prompt": "When is a bind mount the best fit?",
+    "explanation": "A bind mount maps a specific host folder into the container, so editing source on the host is instantly visible inside — ideal for local development. It is not portable across machines.",
+    "options": [
+      {
+        "id": "a",
+        "text": "For portable data shared across many machines"
+      },
+      {
+        "id": "b",
+        "text": "For local development, so host edits appear instantly inside the container"
+      },
+      {
+        "id": "c",
+        "text": "For keeping secrets in memory only"
+      },
+      {
+        "id": "d",
+        "text": "It is never useful"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "storage-and-volumes-04",
+    "topic": "storage-and-volumes",
+    "lesson": "tmpfs-mounts",
+    "type": "fill-blank",
+    "prompt": "A ______ mount stores data only in the host's memory and never writes it to disk. (one word)",
+    "explanation": "A tmpfs mount keeps data in memory only; it disappears when the container stops, which suits short-lived sensitive data.",
+    "answer": [
+      "tmpfs"
+    ]
+  },
+  {
+    "id": "storage-and-volumes-05",
+    "topic": "storage-and-volumes",
+    "lesson": "volume-drivers-and-plugins",
+    "type": "multiple-choice",
+    "prompt": "Which statements about volumes and bind mounts are true? Select all that apply.",
+    "explanation": "Volumes are Docker-managed and portable; bind mounts are host-path specific; -v silently creates a missing path. A volume persists after its container is removed (that is the point).",
+    "options": [
+      {
+        "id": "a",
+        "text": "Named volumes are managed by Docker and are portable across machines"
+      },
+      {
+        "id": "b",
+        "text": "Bind mounts depend on exact host paths, so they are not portable"
+      },
+      {
+        "id": "c",
+        "text": "With -v, a missing bind-mount host path is silently created as an empty directory"
+      },
+      {
+        "id": "d",
+        "text": "Data in a named volume is deleted whenever its container is removed"
+      }
+    ],
+    "answer": [
+      "a",
+      "b",
+      "c"
+    ]
+  },
+  {
+    "id": "storage-and-volumes-06",
+    "topic": "storage-and-volumes",
+    "lesson": "volume-inspection-backup",
+    "type": "match-pair",
+    "prompt": "Match each storage type to its best use.",
+    "explanation": "Volumes persist app data, bind mounts share host folders for dev, tmpfs keeps data in memory, and the writable layer is temporary per-container scratch space.",
+    "pairs": [
+      {
+        "left": "Named volume",
+        "right": "Persisting a database's data"
+      },
+      {
+        "left": "Bind mount",
+        "right": "Live-editing source code in development"
+      },
+      {
+        "left": "tmpfs mount",
+        "right": "In-memory scratch data never written to disk"
+      },
+      {
+        "left": "Writable layer",
+        "right": "Disposable scratch space for one container"
+      }
+    ]
+  },
+  {
+    "id": "storage-and-volumes-07",
+    "topic": "storage-and-volumes",
+    "lesson": "storage-best-practices",
+    "type": "single-choice",
+    "prompt": "How do you mount a named volume as read-only inside a container?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Add the :ro suffix to the -v flag, e.g. -v mydata:/app/data:ro"
+      },
+      {
+        "id": "b",
+        "text": "Run chmod -R 444 inside the container"
+      },
+      {
+        "id": "c",
+        "text": "Set READONLY=true in the container environment variables"
+      },
+      {
+        "id": "d",
+        "text": "Volumes cannot be made read-only"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Appending :ro (or readonly with --mount) attaches the volume in read-only mode, blocking write operations by the container process."
+  },
+  {
+    "id": "storage-and-volumes-08",
+    "topic": "storage-and-volumes",
+    "lesson": "volume-inspection-backup",
+    "type": "single-choice",
+    "prompt": "Which flag in docker system prune removes unused named volumes?",
+    "options": [
+      {
+        "id": "a",
+        "text": "docker volume prune (or docker system prune --volumes)"
+      },
+      {
+        "id": "b",
+        "text": "docker system prune --all (prunes volumes automatically)"
+      },
+      {
+        "id": "c",
+        "text": "docker volume rm --force"
+      },
+      {
+        "id": "d",
+        "text": "docker rmi --volumes"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Because volumes often hold critical persistent state, docker system prune skips volumes unless you pass the --volumes flag or run docker volume prune."
+  },
+  {
+    "id": "storage-and-volumes-09",
+    "topic": "storage-and-volumes",
+    "lesson": "volume-inspection-backup",
+    "type": "single-choice",
+    "prompt": "What is the standard technique for backing up a Docker named volume without stopping services?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Run an ephemeral container with --volumes-from to mount the volume read-only and stream a tar archive to the host"
+      },
+      {
+        "id": "b",
+        "text": "Directly copy files from /var/lib/docker/volumes while the container is actively writing"
+      },
+      {
+        "id": "c",
+        "text": "Commit the container to an image and push it to a registry"
+      },
+      {
+        "id": "d",
+        "text": "Export the container filesystem with docker export"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Spinning up a transient container mounting the volume and running tar produces a clean, isolated backup archive on the host without risking filesystem corruption."
+  },
+  {
+    "id": "storage-and-volumes-10",
+    "topic": "storage-and-volumes",
+    "lesson": "tmpfs-mounts",
+    "type": "multiple-choice",
+    "prompt": "Which characteristics are true of tmpfs mounts in Docker? Select all that apply.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Data is stored strictly in volatile host memory (RAM), never written to host disk"
+      },
+      {
+        "id": "b",
+        "text": "Data is automatically wiped when the container stops"
+      },
+      {
+        "id": "c",
+        "text": "Data survives container deletion and host reboot"
+      },
+      {
+        "id": "d",
+        "text": "tmpfs mounts cannot be shared between multiple containers"
+      }
+    ],
+    "answer": [
+      "a",
+      "b",
+      "d"
+    ],
+    "explanation": "tmpfs mounts exist purely in host RAM. When the container stops, the tmpfs mount is removed and all data is lost. They cannot be shared across containers."
+  },
+  {
+    "id": "storage-and-volumes-11",
+    "topic": "storage-and-volumes",
+    "lesson": "volume-inspection-backup",
+    "type": "fill-blank",
+    "prompt": "To inspect the exact host mountpoint and filesystem metadata of a volume named db-data, run `docker volume ______ db-data`.",
+    "answer": [
+      "inspect"
+    ],
+    "explanation": "`docker volume inspect <name>` returns JSON describing the Driver, Labels, Mountpoint on the host, and creation timestamp."
+  },
+  {
+    "id": "storage-and-volumes-12",
+    "topic": "storage-and-volumes",
+    "lesson": "named-volumes",
+    "type": "match-pair",
+    "prompt": "Match each volume management command to its purpose.",
+    "pairs": [
+      {
+        "left": "docker volume create",
+        "right": "Allocates a new named storage volume"
+      },
+      {
+        "left": "docker volume ls",
+        "right": "Lists all existing volumes on the host"
+      },
+      {
+        "left": "docker volume inspect",
+        "right": "Shows detailed volume mountpoint metadata"
+      },
+      {
+        "left": "docker volume prune",
+        "right": "Removes all unattached storage volumes"
+      }
+    ],
+    "explanation": "create, ls, inspect, and prune manage the full lifecycle of Docker volumes on a host."
+  },
+  {
+    "id": "networking-01",
+    "topic": "networking",
+    "lesson": "container-dns-troubleshooting",
+    "type": "single-choice",
+    "prompt": "What is the key advantage of a user-defined bridge network over the default bridge?",
+    "explanation": "On a user-defined bridge, containers resolve each other by name via built-in DNS. The default bridge supports communication only by IP address.",
+    "options": [
+      {
+        "id": "a",
+        "text": "It is faster"
+      },
+      {
+        "id": "b",
+        "text": "It provides automatic DNS, so containers can reach each other by container name"
+      },
+      {
+        "id": "c",
+        "text": "It publishes all ports automatically"
+      },
+      {
+        "id": "d",
+        "text": "It disables container isolation"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "networking-02",
+    "topic": "networking",
+    "lesson": "custom-networks-cli",
+    "type": "single-choice",
+    "prompt": "Do two containers on the same network need a published port to communicate with each other?",
+    "explanation": "Containers on the same network talk directly over the container port. You publish (-p) only what needs to be reachable from outside.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Yes, always"
+      },
+      {
+        "id": "b",
+        "text": "No; publishing is only for reaching a container from the host or outside world"
+      },
+      {
+        "id": "c",
+        "text": "Only if they use TCP"
+      },
+      {
+        "id": "d",
+        "text": "Only on the host network"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "networking-03",
+    "topic": "networking",
+    "lesson": "default-bridge-network",
+    "type": "single-choice",
+    "prompt": "How should one container refer to another for a reliable connection?",
+    "explanation": "Use the container/service name on a shared user-defined network. Docker resolves the name via DNS, and names are stable while IPs can change.",
+    "options": [
+      {
+        "id": "a",
+        "text": "By the other container's IP address, hard-coded"
+      },
+      {
+        "id": "b",
+        "text": "By the other container's name on a shared user-defined network"
+      },
+      {
+        "id": "c",
+        "text": "By the host machine's public IP"
+      },
+      {
+        "id": "d",
+        "text": "By the image digest"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "networking-04",
+    "topic": "networking",
+    "lesson": "host-and-none-networking",
+    "type": "fill-blank",
+    "prompt": "The network mode that gives a container no external networking at all is called ______. (one word)",
+    "explanation": "The none network mode leaves a container with only loopback and no external connectivity, useful for fully isolated tasks.",
+    "answer": [
+      "none"
+    ]
+  },
+  {
+    "id": "networking-05",
+    "topic": "networking",
+    "lesson": "macvlan-and-ipvlan",
+    "type": "multiple-choice",
+    "prompt": "Which statements about Docker networking are true? Select all that apply.",
+    "explanation": "EXPOSE is documentation, containers can join multiple networks, and -p forwards a host port. Name resolution works on user-defined bridges, not the default bridge.",
+    "options": [
+      {
+        "id": "a",
+        "text": "EXPOSE in a Dockerfile only documents a port; it does not open it"
+      },
+      {
+        "id": "b",
+        "text": "A container can be connected to more than one network"
+      },
+      {
+        "id": "c",
+        "text": "The default bridge resolves container names via DNS"
+      },
+      {
+        "id": "d",
+        "text": "Publishing with -p forwards a host port to a container port"
+      }
+    ],
+    "answer": [
+      "a",
+      "b",
+      "d"
+    ]
+  },
+  {
+    "id": "networking-06",
+    "topic": "networking",
+    "lesson": "network-security-isolation",
+    "type": "ordering",
+    "prompt": "Order these steps to run an app and database that talk by name.",
+    "explanation": "Create the shared network, start both containers on it, and the app resolves the database by its container name db.",
+    "items": [
+      {
+        "id": "net",
+        "text": "docker network create appnet"
+      },
+      {
+        "id": "db",
+        "text": "docker run -d --name db --network appnet postgres:16"
+      },
+      {
+        "id": "app",
+        "text": "docker run -d --name app --network appnet -p 8080:3000 myteam/app"
+      },
+      {
+        "id": "connect",
+        "text": "The app connects to the database at hostname db"
+      }
+    ],
+    "answer": [
+      "net",
+      "db",
+      "app",
+      "connect"
+    ]
+  },
+  {
+    "id": "networking-07",
+    "topic": "networking",
+    "lesson": "user-defined-bridge",
+    "type": "single-choice",
+    "prompt": "What is the IP address of the embedded Docker DNS server inside user-defined networks?",
+    "options": [
+      {
+        "id": "a",
+        "text": "127.0.0.11"
+      },
+      {
+        "id": "b",
+        "text": "127.0.0.1"
+      },
+      {
+        "id": "c",
+        "text": "8.8.8.8"
+      },
+      {
+        "id": "d",
+        "text": "172.17.0.1"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Dockers embedded DNS server listens on loopback IP 127.0.0.11 inside container network namespaces connected to user-defined networks."
+  },
+  {
+    "id": "networking-08",
+    "topic": "networking",
+    "lesson": "host-and-none-networking",
+    "type": "single-choice",
+    "prompt": "When using --network host, what happens to network isolation?",
+    "options": [
+      {
+        "id": "a",
+        "text": "The container shares the host network namespace directly, bypassing all network isolation and port mapping overhead"
+      },
+      {
+        "id": "b",
+        "text": "The container is assigned a private virtual bridge IP"
+      },
+      {
+        "id": "c",
+        "text": "The container cannot bind to ports below 1024"
+      },
+      {
+        "id": "d",
+        "text": "The container is completely cut off from network access"
+      }
+    ],
+    "answer": "a",
+    "explanation": "In host networking mode (--net=host), the container shares the host network stack directly, achieving native speeds at the expense of namespace isolation."
+  },
+  {
+    "id": "networking-09",
+    "topic": "networking",
+    "lesson": "default-bridge-network",
+    "type": "multiple-choice",
+    "prompt": "Why does container DNS resolution fail between two containers running on the default bridge network? Select all that apply.",
+    "options": [
+      {
+        "id": "a",
+        "text": "The default bridge network does not run the embedded DNS server"
+      },
+      {
+        "id": "b",
+        "text": "Containers on the default bridge can only reach each other by IP address unless legacy links are used"
+      },
+      {
+        "id": "c",
+        "text": "The default bridge blocks all ICMP packets"
+      },
+      {
+        "id": "d",
+        "text": "Containers on the default bridge cannot use TCP"
+      }
+    ],
+    "answer": [
+      "a",
+      "b"
+    ],
+    "explanation": "The default bridge only supports communication via IP addresses or legacy --link flags. Automatic DNS name resolution requires a user-defined network."
+  },
+  {
+    "id": "networking-10",
+    "topic": "networking",
+    "lesson": "user-defined-bridge",
+    "type": "fill-blank",
+    "prompt": "To disconnect a running container named web-app from a network named frontend-net, use the command `docker network ______ frontend-net web-app`.",
+    "answer": [
+      "disconnect"
+    ],
+    "explanation": "`docker network disconnect <network> <container>` detaches a container from a network dynamically without stopping the container."
+  },
+  {
+    "id": "networking-11",
+    "topic": "networking",
+    "lesson": "container-dns-troubleshooting",
+    "type": "ordering",
+    "prompt": "Order the steps to troubleshoot a container DNS resolution failure.",
+    "items": [
+      {
+        "id": "1",
+        "text": "Verify both containers are attached to the same user-defined network"
+      },
+      {
+        "id": "2",
+        "text": "Run docker exec alpine nslookup target-service to query 127.0.0.11"
+      },
+      {
+        "id": "3",
+        "text": "Test direct IP connectivity using ping or curl against the resolved IP"
+      },
+      {
+        "id": "4",
+        "text": "Check that the target application inside the destination container is listening on the expected port"
+      }
+    ],
+    "answer": [
+      "1",
+      "2",
+      "3",
+      "4"
+    ],
+    "explanation": "Troubleshoot network issues starting from network membership, DNS lookup, raw IP connectivity, and finally service port binding."
+  },
+  {
+    "id": "networking-12",
+    "topic": "networking",
+    "lesson": "custom-networks-cli",
+    "type": "match-pair",
+    "prompt": "Match each Docker network driver to its core characteristic.",
+    "pairs": [
+      {
+        "left": "bridge",
+        "right": "Default host-isolated private virtual Ethernet network"
+      },
+      {
+        "left": "host",
+        "right": "Shares the host network stack directly with zero isolation"
+      },
+      {
+        "left": "none",
+        "right": "Completely disables all network interfaces except loopback"
+      },
+      {
+        "left": "macvlan",
+        "right": "Assigns each container a unique physical MAC address on the LAN"
+      }
+    ],
+    "explanation": "Each network driver configures network namespaces, iptables, and virtual interfaces according to different deployment and performance requirements."
+  },
+  {
+    "id": "advanced-builds-01",
+    "topic": "advanced-builds",
+    "lesson": "buildkit-cache-mounts",
+    "type": "single-choice",
+    "prompt": "What problem do multi-stage builds solve?",
+    "explanation": "A multi-stage build does the heavy work in an early stage, then copies only the finished artifact into a lean final stage, leaving compilers and dev dependencies behind.",
+    "options": [
+      {
+        "id": "a",
+        "text": "They make containers start on multiple hosts"
+      },
+      {
+        "id": "b",
+        "text": "They keep build tools and dev dependencies out of the final image by building in one stage and shipping only the artifact from another"
+      },
+      {
+        "id": "c",
+        "text": "They publish ports automatically"
+      },
+      {
+        "id": "d",
+        "text": "They replace the need for a registry"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "advanced-builds-02",
+    "topic": "advanced-builds",
+    "lesson": "buildkit-features",
+    "type": "single-choice",
+    "prompt": "In a multi-stage build, which stage(s) end up in the shipped image?",
+    "explanation": "Only the final stage becomes the image. Earlier stages are used during the build and then discarded.",
+    "options": [
+      {
+        "id": "a",
+        "text": "All stages combined"
+      },
+      {
+        "id": "b",
+        "text": "Only the last stage"
+      },
+      {
+        "id": "c",
+        "text": "Only the first stage"
+      },
+      {
+        "id": "d",
+        "text": "A random stage chosen at build time"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "advanced-builds-03",
+    "topic": "advanced-builds",
+    "lesson": "combining-run-commands",
+    "type": "single-choice",
+    "prompt": "Why do smaller images improve security, not just speed?",
+    "explanation": "Less software in the image means fewer components that could contain exploitable vulnerabilities — a smaller attack surface — on top of faster transfers and startup.",
+    "options": [
+      {
+        "id": "a",
+        "text": "They encrypt the filesystem"
+      },
+      {
+        "id": "b",
+        "text": "Fewer packages mean a smaller attack surface with fewer potential vulnerabilities"
+      },
+      {
+        "id": "c",
+        "text": "They run as root by default"
+      },
+      {
+        "id": "d",
+        "text": "They disable networking"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "advanced-builds-04",
+    "topic": "advanced-builds",
+    "lesson": "copy-from-stages",
+    "type": "fill-blank",
+    "prompt": "To copy a built artifact from an earlier stage named build, you write COPY ______=build /app/dist /dest. (the flag)",
+    "explanation": "COPY --from=build copies from the earlier stage named build rather than from the build context.",
+    "answer": [
+      "--from",
+      "from"
+    ]
+  },
+  {
+    "id": "advanced-builds-05",
+    "topic": "advanced-builds",
+    "lesson": "docker-buildx-multiarch",
+    "type": "single-choice",
+    "prompt": "What is a defining characteristic of a distroless base image?",
+    "explanation": "Distroless images strip out the shell, package manager, and most of the OS, leaving just enough to run your app — very secure, but harder to debug interactively.",
+    "options": [
+      {
+        "id": "a",
+        "text": "It includes a full desktop environment"
+      },
+      {
+        "id": "b",
+        "text": "It contains only your app and its runtime, with no shell or package manager"
+      },
+      {
+        "id": "c",
+        "text": "It can only run on Windows"
+      },
+      {
+        "id": "d",
+        "text": "It automatically scales your app"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "advanced-builds-06",
+    "topic": "advanced-builds",
+    "lesson": "layer-caching-order",
+    "type": "ordering",
+    "prompt": "Order the stages of a typical multi-stage build for a compiled or bundled app.",
+    "explanation": "Start a build stage with the full toolchain, build the artifact, start a minimal runtime stage, then copy just the artifact into it.",
+    "items": [
+      {
+        "id": "base",
+        "text": "FROM a full toolchain image AS build"
+      },
+      {
+        "id": "compile",
+        "text": "Install dependencies and build the artifact"
+      },
+      {
+        "id": "runtime",
+        "text": "FROM a minimal runtime base image"
+      },
+      {
+        "id": "copy",
+        "text": "COPY --from=build only the finished artifact"
+      }
+    ],
+    "answer": [
+      "base",
+      "compile",
+      "runtime",
+      "copy"
+    ]
+  },
+  {
+    "id": "advanced-builds-07",
+    "topic": "advanced-builds",
+    "lesson": "minimal-base-images",
+    "type": "single-choice",
+    "prompt": "What is BuildKit?",
+    "explanation": "BuildKit is the modern build engine, and it is the default in current Docker. It builds stages in parallel, caches more granularly, and supports mounts and build secrets.",
+    "options": [
+      {
+        "id": "a",
+        "text": "A registry for storing images"
+      },
+      {
+        "id": "b",
+        "text": "Docker's modern, default build engine with parallel stages, smarter caching, and features like cache mounts"
+      },
+      {
+        "id": "c",
+        "text": "A container orchestration platform"
+      },
+      {
+        "id": "d",
+        "text": "A logging driver"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "advanced-builds-08",
+    "topic": "advanced-builds",
+    "lesson": "multi-stage-builds",
+    "type": "single-choice",
+    "prompt": "What does adding `# syntax=docker/dockerfile:1` as the first line do?",
+    "explanation": "The syntax directive selects the current stable Dockerfile frontend, unlocking features such as cache mounts and build secrets regardless of Docker version.",
+    "options": [
+      {
+        "id": "a",
+        "text": "It publishes the image"
+      },
+      {
+        "id": "b",
+        "text": "It tells BuildKit to use the current Dockerfile frontend, enabling modern features like RUN --mount"
+      },
+      {
+        "id": "c",
+        "text": "It sets the base image"
+      },
+      {
+        "id": "d",
+        "text": "It runs the container as non-root"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "advanced-builds-09",
+    "topic": "advanced-builds",
+    "lesson": "buildkit-cache-mounts",
+    "type": "single-choice",
+    "prompt": "Why build multi-platform images?",
+    "explanation": "A single-architecture image will not run on a different architecture without emulation. A multi-platform image (a manifest list) provides the right build for each machine.",
+    "options": [
+      {
+        "id": "a",
+        "text": "To make images larger"
+      },
+      {
+        "id": "b",
+        "text": "Because build and deploy machines can differ in CPU architecture (e.g. arm64 vs amd64), and one multi-platform image runs on each"
+      },
+      {
+        "id": "c",
+        "text": "To avoid using a registry"
+      },
+      {
+        "id": "d",
+        "text": "To disable the cache"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "advanced-builds-10",
+    "topic": "advanced-builds",
+    "lesson": "buildkit-features",
+    "type": "fill-blank",
+    "prompt": "The extended build command that manages builders and produces multi-platform images is docker ______. (one word)",
+    "explanation": "docker buildx, built on BuildKit, manages builders and can produce multi-platform images with --platform.",
+    "answer": [
+      "buildx"
+    ]
+  },
+  {
+    "id": "advanced-builds-11",
+    "topic": "advanced-builds",
+    "lesson": "combining-run-commands",
+    "type": "single-choice",
+    "prompt": "Why does a multi-platform buildx build usually require --push rather than loading locally?",
+    "explanation": "The local store is single-architecture, so a multi-platform result cannot be loaded into it; you push the manifest list to a registry (or use --load for a single platform).",
+    "options": [
+      {
+        "id": "a",
+        "text": "Because pushing is faster"
+      },
+      {
+        "id": "b",
+        "text": "Because the local image store holds a single architecture, so the multi-platform manifest list is pushed to a registry instead"
+      },
+      {
+        "id": "c",
+        "text": "Because buildx cannot build locally at all"
+      },
+      {
+        "id": "d",
+        "text": "Because --push disables the cache"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "advanced-builds-12",
+    "topic": "advanced-builds",
+    "lesson": "copy-from-stages",
+    "type": "single-choice",
+    "prompt": "What does a cache mount (RUN --mount=type=cache) do?",
+    "explanation": "A cache mount keeps a download cache (pip, npm, apk) available across builds for speed, while keeping it out of the final image layers.",
+    "options": [
+      {
+        "id": "a",
+        "text": "It bakes the package cache into the image as a layer"
+      },
+      {
+        "id": "b",
+        "text": "It persists a package manager's cache across builds without adding it to the image"
+      },
+      {
+        "id": "c",
+        "text": "It publishes the container's ports"
+      },
+      {
+        "id": "d",
+        "text": "It scans the image for vulnerabilities"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "compose-01",
+    "topic": "compose",
+    "lesson": "compose-depends-on-health",
+    "type": "single-choice",
+    "prompt": "What is Docker Compose used for?",
+    "explanation": "Compose describes a multi-container app in compose.yaml and lets you start, stop, and manage all of it with commands like docker compose up and down.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Building a single image faster"
+      },
+      {
+        "id": "b",
+        "text": "Defining and running a multi-container application from one YAML file, managed as a unit"
+      },
+      {
+        "id": "c",
+        "text": "Replacing the Docker daemon"
+      },
+      {
+        "id": "d",
+        "text": "Scanning images for vulnerabilities"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "compose-02",
+    "topic": "compose",
+    "lesson": "compose-env-interpolation",
+    "type": "single-choice",
+    "prompt": "How do services in a Compose project reach one another?",
+    "explanation": "Compose puts all services on a shared project network with DNS, so a service connects to another by its service name (for example, db).",
+    "options": [
+      {
+        "id": "a",
+        "text": "By hard-coded IP addresses"
+      },
+      {
+        "id": "b",
+        "text": "By service name over the network Compose creates for the project"
+      },
+      {
+        "id": "c",
+        "text": "Only if every port is published to the host"
+      },
+      {
+        "id": "d",
+        "text": "They cannot communicate"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "compose-03",
+    "topic": "compose",
+    "lesson": "compose-named-volumes",
+    "type": "single-choice",
+    "prompt": "Should a modern Compose file include a top-level `version: \"3\"` key?",
+    "explanation": "The top-level version key is obsolete under the current Compose Specification. Compose warns if you include it; leave it out.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Yes, it is required"
+      },
+      {
+        "id": "b",
+        "text": "No, it is obsolete under the Compose Specification and should be omitted"
+      },
+      {
+        "id": "c",
+        "text": "Only for databases"
+      },
+      {
+        "id": "d",
+        "text": "Only when using build:"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "compose-04",
+    "topic": "compose",
+    "lesson": "compose-networking-dns",
+    "type": "fill-blank",
+    "prompt": "The current Compose command is two words: docker ______ up. (one word)",
+    "explanation": "Compose v2 is a plugin invoked as docker compose (with a space). The old standalone docker-compose (v1) is retired.",
+    "answer": [
+      "compose"
+    ]
+  },
+  {
+    "id": "compose-05",
+    "topic": "compose",
+    "lesson": "compose-profiles-and-overrides",
+    "type": "single-choice",
+    "prompt": "Does depends_on wait until the dependency is ready to accept connections?",
+    "explanation": "depends_on controls the order services start, not whether a dependency is ready. Waiting for readiness requires a healthcheck plus condition: service_healthy.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Yes, it always waits for full readiness"
+      },
+      {
+        "id": "b",
+        "text": "No, it only controls start order; readiness needs a healthcheck and a condition"
+      },
+      {
+        "id": "c",
+        "text": "Yes, but only for databases"
+      },
+      {
+        "id": "d",
+        "text": "No, it has no effect at all"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "compose-06",
+    "topic": "compose",
+    "lesson": "compose-services-and-build",
+    "type": "multiple-choice",
+    "prompt": "Which statements about a Compose file and its commands are true? Select all that apply.",
+    "explanation": "Services can build or use an image, down tears the app down, and --build forces a rebuild. You only publish the ports you need reachable from the host.",
+    "options": [
+      {
+        "id": "a",
+        "text": "A service can build from a Dockerfile or use a prebuilt image"
+      },
+      {
+        "id": "b",
+        "text": "docker compose down removes the app's containers and network"
+      },
+      {
+        "id": "c",
+        "text": "docker compose up --build rebuilds services that have a build section"
+      },
+      {
+        "id": "d",
+        "text": "You must publish every service's port for the app to work"
+      }
+    ],
+    "answer": [
+      "a",
+      "b",
+      "c"
+    ]
+  },
+  {
+    "id": "compose-07",
+    "topic": "compose",
+    "lesson": "compose-specification",
+    "type": "single-choice",
+    "prompt": "What does a healthcheck do in Compose?",
+    "explanation": "A healthcheck runs a test command on an interval and marks the container healthy, unhealthy, or starting based on the result.",
+    "options": [
+      {
+        "id": "a",
+        "text": "It publishes the container's ports"
+      },
+      {
+        "id": "b",
+        "text": "It runs a probe command periodically to report the container as healthy or unhealthy"
+      },
+      {
+        "id": "c",
+        "text": "It restarts the host"
+      },
+      {
+        "id": "d",
+        "text": "It builds the image"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "compose-08",
+    "topic": "compose",
+    "lesson": "compose-up-and-down",
+    "type": "single-choice",
+    "prompt": "How do you make a web service wait until its database is truly ready?",
+    "explanation": "depends_on alone only orders startup. Combined with a healthcheck and condition: service_healthy, the dependent service waits until the dependency reports healthy.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Use depends_on alone"
+      },
+      {
+        "id": "b",
+        "text": "Give the database a healthcheck and set depends_on with condition: service_healthy on the web service"
+      },
+      {
+        "id": "c",
+        "text": "Publish the database port"
+      },
+      {
+        "id": "d",
+        "text": "Add a sleep to the database image"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "compose-09",
+    "topic": "compose",
+    "lesson": "compose-depends-on-health",
+    "type": "single-choice",
+    "prompt": "What are Compose profiles used for?",
+    "explanation": "A service with profiles: [\"debug\"] starts only when you activate that profile (docker compose --profile debug up), which suits optional debuggers, seeders, and migrations.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Encrypting the Compose file"
+      },
+      {
+        "id": "b",
+        "text": "Including a service only when its profile is activated, for optional tools or one-off jobs"
+      },
+      {
+        "id": "c",
+        "text": "Setting the base image"
+      },
+      {
+        "id": "d",
+        "text": "Publishing ports automatically"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "compose-10",
+    "topic": "compose",
+    "lesson": "compose-env-interpolation",
+    "type": "fill-blank",
+    "prompt": "To load environment variables into a service from a separate file, use the ______ key. (one word, with underscore)",
+    "explanation": "env_file loads variables from a separate file, keeping configuration and secrets out of the committed Compose file.",
+    "answer": [
+      "env_file",
+      "env-file"
+    ]
+  },
+  {
+    "id": "compose-11",
+    "topic": "compose",
+    "lesson": "compose-named-volumes",
+    "type": "single-choice",
+    "prompt": "What does `docker compose config` print?",
+    "explanation": "docker compose config resolves overrides and ${VAR} interpolation and prints the final configuration, which is invaluable for debugging multi-file setups.",
+    "options": [
+      {
+        "id": "a",
+        "text": "The Docker daemon logs"
+      },
+      {
+        "id": "b",
+        "text": "The fully merged and interpolated configuration, so you can verify overrides and variables"
+      },
+      {
+        "id": "c",
+        "text": "A list of images on Docker Hub"
+      },
+      {
+        "id": "d",
+        "text": "The container's health status"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "compose-12",
+    "topic": "compose",
+    "lesson": "compose-networking-dns",
+    "type": "multiple-choice",
+    "prompt": "Which statements about advanced Compose features are true? Select all that apply.",
+    "explanation": "Networks isolate tiers, override files layer config, and ${VAR:-default} supplies a fallback. A probe that only checks the process is running is not a real readiness check.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Custom networks can isolate tiers so a frontend cannot reach a backend-only service"
+      },
+      {
+        "id": "b",
+        "text": "Override files let you layer environment-specific changes on a shared base"
+      },
+      {
+        "id": "c",
+        "text": "${WEB_PORT:-8080} substitutes WEB_PORT or defaults to 8080"
+      },
+      {
+        "id": "d",
+        "text": "A healthcheck that only checks the process exists is a thorough readiness probe"
+      }
+    ],
+    "answer": [
+      "a",
+      "b",
+      "c"
+    ]
+  },
+  {
+    "id": "security-01",
+    "topic": "security",
+    "lesson": "base-image-provenance",
+    "type": "single-choice",
+    "prompt": "By default, what user does a container's process run as, and why is that a concern?",
+    "explanation": "Unless the image sets a USER, the process runs as root. Running unprivileged limits what an attacker can do if the app is compromised.",
+    "options": [
+      {
+        "id": "a",
+        "text": "A random user; it is never a concern"
+      },
+      {
+        "id": "b",
+        "text": "root (unless a USER is set); a compromise then gives an attacker root inside the container"
+      },
+      {
+        "id": "c",
+        "text": "nobody; it is fully safe"
+      },
+      {
+        "id": "d",
+        "text": "The host's logged-in user"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "security-02",
+    "topic": "security",
+    "lesson": "buildkit-secrets",
+    "type": "single-choice",
+    "prompt": "Why can't you hide a secret by COPYing it into an image and deleting it in a later instruction?",
+    "explanation": "Each instruction adds a layer; the secret remains in the earlier layer and can be extracted, even if a later instruction appears to remove the file.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Because Docker encrypts all layers"
+      },
+      {
+        "id": "b",
+        "text": "Because the secret is stored in the layer created by the COPY, and later layers do not erase earlier ones"
+      },
+      {
+        "id": "c",
+        "text": "Because deletes are not allowed in Dockerfiles"
+      },
+      {
+        "id": "d",
+        "text": "It actually does hide the secret safely"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "security-03",
+    "topic": "security",
+    "lesson": "docker-daemon-security",
+    "type": "single-choice",
+    "prompt": "How do you provide a secret during a build without baking it into the image?",
+    "explanation": "A BuildKit build secret is mounted only for that RUN and never written to a layer, unlike ARG or ENV which persist in the image.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Pass it with ARG"
+      },
+      {
+        "id": "b",
+        "text": "Use a BuildKit build secret: RUN --mount=type=secret with docker build --secret"
+      },
+      {
+        "id": "c",
+        "text": "Set it as an ENV"
+      },
+      {
+        "id": "d",
+        "text": "COPY it in and delete it"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "security-04",
+    "topic": "security",
+    "lesson": "dropping-linux-capabilities",
+    "type": "fill-blank",
+    "prompt": "Docker's built-in tool for scanning images for known vulnerabilities is Docker ______. (one word)",
+    "explanation": "docker scout cves <image> lists known CVEs in an image's packages; scanning belongs in CI so vulnerable images are caught early.",
+    "answer": [
+      "Scout",
+      "scout"
+    ]
+  },
+  {
+    "id": "security-05",
+    "topic": "security",
+    "lesson": "non-root-user",
+    "type": "multiple-choice",
+    "prompt": "Which practices apply least privilege to a container? Select all that apply.",
+    "explanation": "Read-only filesystems, dropped capabilities, and no-new-privileges all reduce privilege. --privileged does the opposite, removing most isolation.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Run with --read-only and mount a small tmpfs for paths that need writes"
+      },
+      {
+        "id": "b",
+        "text": "Use --cap-drop ALL and add back only the capabilities needed"
+      },
+      {
+        "id": "c",
+        "text": "Add --security-opt no-new-privileges"
+      },
+      {
+        "id": "d",
+        "text": "Run with --privileged to be safe"
+      }
+    ],
+    "answer": [
+      "a",
+      "b",
+      "c"
+    ]
+  },
+  {
+    "id": "security-06",
+    "topic": "security",
+    "lesson": "read-only-rootfs",
+    "type": "single-choice",
+    "prompt": "Which base-image habit best reduces the number of vulnerabilities you ship?",
+    "explanation": "Minimal images have a smaller attack surface, trusted/pinned images are predictable, and regular rebuilds pull in upstream security patches.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Use the largest possible base image"
+      },
+      {
+        "id": "b",
+        "text": "Prefer minimal, trusted, pinned base images and rebuild regularly to pick up patches"
+      },
+      {
+        "id": "c",
+        "text": "Always use :latest and never rebuild"
+      },
+      {
+        "id": "d",
+        "text": "Avoid official images"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "security-07",
+    "topic": "security",
+    "lesson": "dropping-linux-capabilities",
+    "type": "single-choice",
+    "prompt": "What is the recommended practice for handling Linux capabilities on production containers?",
+    "options": [
+      {
+        "id": "a",
+        "text": "Drop all capabilities with --cap-drop=ALL, then selectively add back only required ones with --cap-add"
+      },
+      {
+        "id": "b",
+        "text": "Run containers with --privileged so capabilities are automatically handled"
+      },
+      {
+        "id": "c",
+        "text": "Linux capabilities do not apply to Docker containers"
+      },
+      {
+        "id": "d",
+        "text": "Always add CAP_SYS_ADMIN for optimal container performance"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Applying least privilege by dropping all kernel capabilities (--cap-drop=ALL) and adding back only specific necessary capabilities minimizes attack surface."
+  },
+  {
+    "id": "security-08",
+    "topic": "security",
+    "lesson": "docker-daemon-security",
+    "type": "single-choice",
+    "prompt": "Why is mounting the Docker host socket (/var/run/docker.sock) into an untrusted container dangerous?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It gives the container full root access over the host Docker daemon, allowing root host compromise"
+      },
+      {
+        "id": "b",
+        "text": "It causes high memory consumption on the host kernel"
+      },
+      {
+        "id": "c",
+        "text": "It prevents the container from writing logs"
+      },
+      {
+        "id": "d",
+        "text": "It slows down container startup times"
+      }
+    ],
+    "answer": "a",
+    "explanation": "Access to the Docker socket allows creating privileged containers with host root mounted (-v /:/host), granting full root-level control over the underlying host machine."
+  },
+  {
+    "id": "security-09",
+    "topic": "security",
+    "lesson": "read-only-rootfs",
+    "type": "single-choice",
+    "prompt": "How does mounting the container root filesystem as read-only (--read-only) improve security?",
+    "options": [
+      {
+        "id": "a",
+        "text": "It prevents attackers from modifying application binaries, downloading malware, or altering system files"
+      },
+      {
+        "id": "b",
+        "text": "It compresses the container image on disk"
+      },
+      {
+        "id": "c",
+        "text": "It speeds up network data transfers"
+      },
+      {
+        "id": "d",
+        "text": "It prevents Docker from reading environment variables"
+      }
+    ],
+    "answer": "a",
+    "explanation": "An immutable root filesystem (--read-only) ensures that even if an attacker achieves remote code execution, they cannot persist malicious scripts or overwrite system binaries."
+  },
+  {
+    "id": "security-10",
+    "topic": "security",
+    "lesson": "secrets-hygiene",
+    "type": "multiple-choice",
+    "prompt": "Which practices prevent accidental secrets exposure in Docker? Select all that apply.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Use BuildKit secret mounts (RUN --mount=type=secret) during image builds"
+      },
+      {
+        "id": "b",
+        "text": "Add sensitive files like .env and private keys to .dockerignore"
+      },
+      {
+        "id": "c",
+        "text": "Pass production database passwords via Dockerfile ARG instructions"
+      },
+      {
+        "id": "d",
+        "text": "Inject runtime credentials via environment variables or secret managers instead of baking them into images"
+      }
+    ],
+    "answer": [
+      "a",
+      "b",
+      "d"
+    ],
+    "explanation": "ARG values are recorded in image history and visible via docker history. Use BuildKit secret mounts for build-time secrets and environment injection for runtime."
+  },
+  {
+    "id": "security-11",
+    "topic": "security",
+    "lesson": "vulnerability-scanning",
+    "type": "fill-blank",
+    "prompt": "To scan a local container image named my-app:latest for security vulnerabilities and CVEs, use the open-source CLI tool named ______.",
+    "answer": [
+      "trivy",
+      "Trivy"
+    ],
+    "explanation": "Trivy is a popular open-source vulnerability scanner for container images, filesystems, and Git repositories."
+  },
+  {
+    "id": "security-12",
+    "topic": "security",
+    "lesson": "non-root-user",
+    "type": "match-pair",
+    "prompt": "Match each container security flag to its defense mechanism.",
+    "pairs": [
+      {
+        "left": "--cap-drop=ALL",
+        "right": "Strips all default Linux kernel capabilities from the container"
+      },
+      {
+        "left": "--read-only",
+        "right": "Mounts container root filesystem as immutable"
+      },
+      {
+        "left": "--security-opt no-new-privileges:true",
+        "right": "Prevents setuid and setgid binaries from elevating privileges"
+      },
+      {
+        "left": "-u 1000:1000",
+        "right": "Executes container process under an unprivileged user UID and GID"
+      }
+    ],
+    "explanation": "Combining non-root users, no-new-privileges, dropped capabilities, and read-only filesystems forms defense-in-depth container hardening."
+  },
+  {
+    "id": "debugging-observability-01",
+    "topic": "debugging-observability",
+    "lesson": "container-resource-limits",
+    "type": "single-choice",
+    "prompt": "Where should a containerized app send its logs by convention?",
+    "explanation": "Apps should log to stdout/stderr so Docker (or an orchestrator) captures and routes the logs. docker logs then shows them, and the platform can collect them centrally.",
+    "options": [
+      {
+        "id": "a",
+        "text": "To a log file inside the container"
+      },
+      {
+        "id": "b",
+        "text": "To standard output and standard error, which Docker captures"
+      },
+      {
+        "id": "c",
+        "text": "Directly to a remote database"
+      },
+      {
+        "id": "d",
+        "text": "Nowhere; containers cannot log"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "debugging-observability-02",
+    "topic": "debugging-observability",
+    "lesson": "debugging-crashing-containers",
+    "type": "single-choice",
+    "prompt": "A container exited with code 137 and OOMKilled is true. What does that mean?",
+    "explanation": "Exit code 137 with OOMKilled true indicates the container was killed for running out of memory, so the fix is more memory or a leaner workload.",
+    "options": [
+      {
+        "id": "a",
+        "text": "The application had a syntax error"
+      },
+      {
+        "id": "b",
+        "text": "The container exceeded its memory limit and was killed"
+      },
+      {
+        "id": "c",
+        "text": "The image failed to download"
+      },
+      {
+        "id": "d",
+        "text": "The port was already in use"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "debugging-observability-03",
+    "topic": "debugging-observability",
+    "lesson": "docker-inspect-formatting",
+    "type": "single-choice",
+    "prompt": "What is the difference between a container being 'running' and being 'healthy'?",
+    "explanation": "A container can be running while the app inside is wedged. A HEALTHCHECK tests real functionality and reports healthy or unhealthy.",
+    "options": [
+      {
+        "id": "a",
+        "text": "There is no difference"
+      },
+      {
+        "id": "b",
+        "text": "Running means the process started; healthy means a HEALTHCHECK probe confirms the app actually works"
+      },
+      {
+        "id": "c",
+        "text": "Healthy means it uses less memory"
+      },
+      {
+        "id": "d",
+        "text": "Running means it passed its healthcheck"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "debugging-observability-04",
+    "topic": "debugging-observability",
+    "lesson": "docker-logs-and-drivers",
+    "type": "fill-blank",
+    "prompt": "The command that shows a container's full configuration and state as JSON is docker ______. (one word)",
+    "explanation": "docker inspect dumps the full JSON, including state fields like ExitCode and OOMKilled; use --format to extract specific values.",
+    "answer": [
+      "inspect"
+    ]
+  },
+  {
+    "id": "debugging-observability-05",
+    "topic": "debugging-observability",
+    "lesson": "healthcheck-instruction",
+    "type": "single-choice",
+    "prompt": "How can you debug a container that crashes too quickly to exec into?",
+    "explanation": "Overriding the entrypoint with a shell lets you start the container, run the real command manually, and see the error with full context.",
+    "options": [
+      {
+        "id": "a",
+        "text": "You cannot; the image is unusable"
+      },
+      {
+        "id": "b",
+        "text": "Run it with an overridden entrypoint, e.g. docker run -it --entrypoint sh <image>, then investigate"
+      },
+      {
+        "id": "c",
+        "text": "Delete the image and rebuild without changes"
+      },
+      {
+        "id": "d",
+        "text": "Publish more ports"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "debugging-observability-06",
+    "topic": "debugging-observability",
+    "lesson": "prometheus-metrics-scraping",
+    "type": "multiple-choice",
+    "prompt": "Which are good logging and debugging practices? Select all that apply.",
+    "explanation": "Rotate json-file logs, start debugging from logs and exit codes, and use meaningful healthchecks. Logging only to internal files hides output from docker logs and the platform.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Configure rotation (max-size, max-file) for the json-file log driver"
+      },
+      {
+        "id": "b",
+        "text": "Make docker logs and the exit code your first steps when a container fails"
+      },
+      {
+        "id": "c",
+        "text": "Add a HEALTHCHECK that tests a real endpoint"
+      },
+      {
+        "id": "d",
+        "text": "Write logs only to files inside the container"
+      }
+    ],
+    "answer": [
+      "a",
+      "b",
+      "c"
+    ]
+  },
+  {
+    "id": "debugging-observability-07",
+    "topic": "debugging-observability",
+    "lesson": "structured-json-logging",
+    "type": "single-choice",
+    "prompt": "What are the three pillars of observability?",
+    "explanation": "The three pillars are logs (events), metrics (numbers over time), and traces (a single request's path across services).",
+    "options": [
+      {
+        "id": "a",
+        "text": "Images, containers, and volumes"
+      },
+      {
+        "id": "b",
+        "text": "Logs, metrics, and traces"
+      },
+      {
+        "id": "c",
+        "text": "Build, test, and deploy"
+      },
+      {
+        "id": "d",
+        "text": "CPU, memory, and disk"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "debugging-observability-08",
+    "topic": "debugging-observability",
+    "lesson": "three-pillars-observability",
+    "type": "single-choice",
+    "prompt": "Why prefer structured logging over free-form text?",
+    "explanation": "Structured logs (e.g. JSON with fields) let you query things like 'all status:500 on /orders in the last hour' and aggregate across services — hard with plain text.",
+    "options": [
+      {
+        "id": "a",
+        "text": "It uses less disk always"
+      },
+      {
+        "id": "b",
+        "text": "Machine-readable records with consistent fields can be filtered, searched, and aggregated across many containers"
+      },
+      {
+        "id": "c",
+        "text": "It disables logging"
+      },
+      {
+        "id": "d",
+        "text": "It is required by Docker"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "debugging-observability-09",
+    "topic": "debugging-observability",
+    "lesson": "container-resource-limits",
+    "type": "single-choice",
+    "prompt": "How does Prometheus collect metrics?",
+    "explanation": "Prometheus scrapes (pulls) a /metrics endpoint from each service on a schedule and stores the values as time series, often visualized in Grafana.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Services push metrics to it over email"
+      },
+      {
+        "id": "b",
+        "text": "It uses a pull model, scraping each service's /metrics endpoint on a schedule"
+      },
+      {
+        "id": "c",
+        "text": "It reads them from the Dockerfile"
+      },
+      {
+        "id": "d",
+        "text": "It does not collect metrics"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "debugging-observability-10",
+    "topic": "debugging-observability",
+    "lesson": "debugging-crashing-containers",
+    "type": "fill-blank",
+    "prompt": "A ______ probe decides whether to send a container traffic, while a liveness probe decides whether to restart it. (one word)",
+    "explanation": "A readiness probe controls whether traffic is sent; a liveness probe controls whether the container is restarted. They answer different questions.",
+    "answer": [
+      "readiness"
+    ]
+  },
+  {
+    "id": "debugging-observability-11",
+    "topic": "debugging-observability",
+    "lesson": "docker-inspect-formatting",
+    "type": "single-choice",
+    "prompt": "Which question is each observability pillar best at answering?",
+    "explanation": "Metrics detect and trend a problem, traces localize where the time or failure is across services, and logs explain why it happened.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Logs say where, metrics say why, traces say if"
+      },
+      {
+        "id": "b",
+        "text": "Metrics say something is wrong, traces say where, logs say why"
+      },
+      {
+        "id": "c",
+        "text": "They all answer the same question"
+      },
+      {
+        "id": "d",
+        "text": "Metrics say why, logs say where, traces say nothing"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "debugging-observability-12",
+    "topic": "debugging-observability",
+    "lesson": "docker-logs-and-drivers",
+    "type": "multiple-choice",
+    "prompt": "Which are good observability practices? Select all that apply.",
+    "explanation": "Alert on user-facing symptoms, use structured logs, and separate liveness from readiness. Metrics are what you dashboard and alert on, so logs alone are not enough.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Alert on symptoms users feel, like error rate and latency (SLOs)"
+      },
+      {
+        "id": "b",
+        "text": "Emit structured logs to stdout and ship them to a central store"
+      },
+      {
+        "id": "c",
+        "text": "Implement distinct liveness and readiness probes"
+      },
+      {
+        "id": "d",
+        "text": "Rely on logs alone and skip metrics entirely"
+      }
+    ],
+    "answer": [
+      "a",
+      "b",
+      "c"
+    ]
+  },
+  {
+    "id": "cicd-and-deployment-01",
+    "topic": "cicd-and-deployment",
+    "lesson": "blue-green-deployments",
+    "type": "single-choice",
+    "prompt": "What best describes DevOps?",
+    "explanation": "DevOps is primarily a culture of shared ownership and fast feedback, supported by automation — not just a tool or product.",
+    "options": [
+      {
+        "id": "a",
+        "text": "A single tool you install"
+      },
+      {
+        "id": "b",
+        "text": "A culture and set of practices uniting development and operations through shared ownership, automation, and fast feedback"
+      },
+      {
+        "id": "c",
+        "text": "A programming language"
+      },
+      {
+        "id": "d",
+        "text": "A type of container"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "cicd-and-deployment-02",
+    "topic": "cicd-and-deployment",
+    "lesson": "canary-deployments-health-gates",
+    "type": "single-choice",
+    "prompt": "What is the difference between continuous delivery and continuous deployment?",
+    "explanation": "Both make passing changes releasable. Delivery keeps a manual gate before production; deployment removes that gate and ships automatically.",
+    "options": [
+      {
+        "id": "a",
+        "text": "They are the same thing"
+      },
+      {
+        "id": "b",
+        "text": "Continuous delivery keeps a human approval before the production deploy; continuous deployment deploys every passing change automatically"
+      },
+      {
+        "id": "c",
+        "text": "Continuous delivery skips testing"
+      },
+      {
+        "id": "d",
+        "text": "Continuous deployment never reaches production"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "cicd-and-deployment-03",
+    "topic": "cicd-and-deployment",
+    "lesson": "devops-pipeline-stages",
+    "type": "single-choice",
+    "prompt": "Why is a container image an ideal artifact for a CI/CD pipeline?",
+    "explanation": "An image is an immutable, versioned artifact bundling app and dependencies, so the thing you tested is exactly the thing you deploy.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Because it must be rebuilt for each environment"
+      },
+      {
+        "id": "b",
+        "text": "Because it is immutable and versioned, so you build once and promote the exact same image from staging to production"
+      },
+      {
+        "id": "c",
+        "text": "Because it stores configuration inside the image"
+      },
+      {
+        "id": "d",
+        "text": "Because it cannot be pushed to a registry"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "cicd-and-deployment-04",
+    "topic": "cicd-and-deployment",
+    "lesson": "github-actions-cache",
+    "type": "fill-blank",
+    "prompt": "The practice of merging small changes frequently with an automated build and test on each is called continuous ______. (one word)",
+    "explanation": "Continuous integration merges changes often and runs automated build and tests to catch integration problems early.",
+    "answer": [
+      "integration"
+    ]
+  },
+  {
+    "id": "cicd-and-deployment-05",
+    "topic": "cicd-and-deployment",
+    "lesson": "github-actions-docker-build",
+    "type": "multiple-choice",
+    "prompt": "Which twelve-factor habits help containers thrive in CI/CD? Select all that apply.",
+    "explanation": "Config in the environment, stateless processes, and logs as streams all fit the container model. Baking secrets into the image is the opposite of good practice.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Keep configuration in the environment, not baked into the image"
+      },
+      {
+        "id": "b",
+        "text": "Keep processes stateless, storing state in backing services"
+      },
+      {
+        "id": "c",
+        "text": "Write logs to stdout/stderr as event streams"
+      },
+      {
+        "id": "d",
+        "text": "Hard-code production secrets into the image"
+      }
+    ],
+    "answer": [
+      "a",
+      "b",
+      "c"
+    ]
+  },
+  {
+    "id": "cicd-and-deployment-06",
+    "topic": "cicd-and-deployment",
+    "lesson": "pushing-to-ghcr-actions",
+    "type": "ordering",
+    "prompt": "Order the typical stages of a CI/CD pipeline.",
+    "explanation": "After a commit triggers the pipeline, it builds, tests, packages/publishes the image, and then deploys and operates it.",
+    "items": [
+      {
+        "id": "build",
+        "text": "Build the project"
+      },
+      {
+        "id": "test",
+        "text": "Run automated tests"
+      },
+      {
+        "id": "package",
+        "text": "Package it as a container image and push to a registry"
+      },
+      {
+        "id": "deploy",
+        "text": "Deploy and operate"
+      }
+    ],
+    "answer": [
+      "build",
+      "test",
+      "package",
+      "deploy"
+    ]
+  },
+  {
+    "id": "cicd-and-deployment-07",
+    "topic": "cicd-and-deployment",
+    "lesson": "recreate-vs-rolling-deployment",
+    "type": "single-choice",
+    "prompt": "Where do GitHub Actions workflow files live?",
+    "explanation": "Workflows are YAML files placed in .github/workflows/. Each defines events, jobs, and steps.",
+    "options": [
+      {
+        "id": "a",
+        "text": "In the repository root as action.yml"
+      },
+      {
+        "id": "b",
+        "text": "In the .github/workflows/ directory as YAML files"
+      },
+      {
+        "id": "c",
+        "text": "In a Docker image"
+      },
+      {
+        "id": "d",
+        "text": "In the registry"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "cicd-and-deployment-08",
+    "topic": "cicd-and-deployment",
+    "lesson": "twelve-factor-containers",
+    "type": "single-choice",
+    "prompt": "What permission must a job have to push an image to GHCR, and what token does it use?",
+    "explanation": "Pushing to GHCR requires permissions: packages: write. The job authenticates with the automatic GITHUB_TOKEN via docker/login-action.",
+    "options": [
+      {
+        "id": "a",
+        "text": "contents: write, using a personal SSH key"
+      },
+      {
+        "id": "b",
+        "text": "packages: write, using the automatic GITHUB_TOKEN"
+      },
+      {
+        "id": "c",
+        "text": "No permission is needed"
+      },
+      {
+        "id": "d",
+        "text": "admin: write, using a hard-coded password"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "cicd-and-deployment-09",
+    "topic": "cicd-and-deployment",
+    "lesson": "blue-green-deployments",
+    "type": "single-choice",
+    "prompt": "How do you ensure the image is built and pushed only after tests pass?",
+    "explanation": "needs: test makes the build-and-push job depend on the test job, so no image is published when tests fail.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Put both in the same step"
+      },
+      {
+        "id": "b",
+        "text": "Give the build job needs: test so it runs only if the test job succeeds"
+      },
+      {
+        "id": "c",
+        "text": "Run the build job first"
+      },
+      {
+        "id": "d",
+        "text": "Disable tests"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "cicd-and-deployment-10",
+    "topic": "cicd-and-deployment",
+    "lesson": "canary-deployments-health-gates",
+    "type": "fill-blank",
+    "prompt": "In a workflow, a repository secret named API_KEY is referenced as ${{ ______.API_KEY }}. (one word)",
+    "explanation": "Secrets are read via ${{ secrets.NAME }}; they must never be hard-coded in the workflow file.",
+    "answer": [
+      "secrets"
+    ]
+  },
+  {
+    "id": "cicd-and-deployment-11",
+    "topic": "cicd-and-deployment",
+    "lesson": "devops-pipeline-stages",
+    "type": "single-choice",
+    "prompt": "What does docker/metadata-action do in a build workflow?",
+    "explanation": "metadata-action computes useful tags and labels (commit SHA, branch, semantic version) that you feed into build-push-action.",
+    "options": [
+      {
+        "id": "a",
+        "text": "It runs the container"
+      },
+      {
+        "id": "b",
+        "text": "It generates image tags and labels automatically, such as a SHA tag and a semantic-version tag"
+      },
+      {
+        "id": "c",
+        "text": "It scans for vulnerabilities"
+      },
+      {
+        "id": "d",
+        "text": "It deploys to production"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "cicd-and-deployment-12",
+    "topic": "cicd-and-deployment",
+    "lesson": "github-actions-cache",
+    "type": "multiple-choice",
+    "prompt": "Which are good practices for a container CI/CD workflow? Select all that apply.",
+    "explanation": "Test broadly, gate the build on tests, and cache for speed. Credentials belong in secrets, never hard-coded in the workflow.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Run tests on every push and pull request"
+      },
+      {
+        "id": "b",
+        "text": "Gate the image build behind passing tests with needs:"
+      },
+      {
+        "id": "c",
+        "text": "Cache builds with cache-from/cache-to type=gha"
+      },
+      {
+        "id": "d",
+        "text": "Hard-code your registry password in the YAML"
+      }
+    ],
+    "answer": [
+      "a",
+      "b",
+      "c"
+    ]
+  },
+  {
+    "id": "cicd-and-deployment-13",
+    "topic": "cicd-and-deployment",
+    "lesson": "github-actions-docker-build",
+    "type": "single-choice",
+    "prompt": "Why do immutable container images make rollbacks reliable?",
+    "explanation": "Each version is an immutable image, so a deploy is 'run the new image' and a rollback is 'run the previous one' — both are simple and repeatable.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Because you patch the running server in place"
+      },
+      {
+        "id": "b",
+        "text": "Because rolling back just means running the previous image (by digest); nothing is modified in place"
+      },
+      {
+        "id": "c",
+        "text": "Because images cannot fail"
+      },
+      {
+        "id": "d",
+        "text": "Because rollbacks require rebuilding from source"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "cicd-and-deployment-14",
+    "topic": "cicd-and-deployment",
+    "lesson": "pushing-to-ghcr-actions",
+    "type": "single-choice",
+    "prompt": "What is the main drawback of the recreate strategy?",
+    "explanation": "Recreate stops the old version before starting the new one, so there is a gap with downtime. It is simple and fine when brief downtime is acceptable.",
+    "options": [
+      {
+        "id": "a",
+        "text": "It needs double the resources"
+      },
+      {
+        "id": "b",
+        "text": "There is downtime between stopping the old version and starting the new one"
+      },
+      {
+        "id": "c",
+        "text": "It cannot roll back"
+      },
+      {
+        "id": "d",
+        "text": "It runs three versions at once"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "cicd-and-deployment-15",
+    "topic": "cicd-and-deployment",
+    "lesson": "recreate-vs-rolling-deployment",
+    "type": "single-choice",
+    "prompt": "What must you be careful about during a rolling update?",
+    "explanation": "A rolling update replaces instances gradually, so old and new versions coexist for a while and must be compatible, particularly around database schema changes.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Only one version ever runs"
+      },
+      {
+        "id": "b",
+        "text": "Both versions run at the same time, so they must be compatible (especially with a shared database)"
+      },
+      {
+        "id": "c",
+        "text": "It always causes downtime"
+      },
+      {
+        "id": "d",
+        "text": "It cannot be rolled back"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "cicd-and-deployment-16",
+    "topic": "cicd-and-deployment",
+    "lesson": "twelve-factor-containers",
+    "type": "fill-blank",
+    "prompt": "Releasing a new version to a small percentage of users first, then expanding based on metrics, is called a ______ deployment. (one word)",
+    "explanation": "A canary deployment limits the blast radius by exposing the new version to a small fraction of traffic before ramping up.",
+    "answer": [
+      "canary"
+    ]
+  },
+  {
+    "id": "cicd-and-deployment-17",
+    "topic": "cicd-and-deployment",
+    "lesson": "blue-green-deployments",
+    "type": "single-choice",
+    "prompt": "How does blue-green deployment enable near-instant rollback?",
+    "explanation": "Blue-green keeps both environments; traffic is switched to green, but blue stays ready so you can switch back instantly if needed.",
+    "options": [
+      {
+        "id": "a",
+        "text": "By deleting the old version immediately"
+      },
+      {
+        "id": "b",
+        "text": "By keeping the old (blue) environment running and switching traffic back to it if the new (green) one misbehaves"
+      },
+      {
+        "id": "c",
+        "text": "By rebuilding the image faster"
+      },
+      {
+        "id": "d",
+        "text": "By skipping health checks"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "cicd-and-deployment-18",
+    "topic": "cicd-and-deployment",
+    "lesson": "canary-deployments-health-gates",
+    "type": "match-pair",
+    "prompt": "Match each deployment strategy to its defining trait.",
+    "explanation": "Each strategy trades off downtime, resource usage, and rollback speed differently; choose based on the change's risk.",
+    "pairs": [
+      {
+        "left": "Recreate",
+        "right": "Stop old, then start new (brief downtime)"
+      },
+      {
+        "left": "Rolling",
+        "right": "Replace instances gradually, no downtime"
+      },
+      {
+        "left": "Blue-green",
+        "right": "Two environments; switch traffic all at once"
+      },
+      {
+        "left": "Canary",
+        "right": "Small percentage first, expand on good metrics"
+      }
+    ]
+  },
+  {
+    "id": "orchestration-and-iac-01",
+    "topic": "orchestration-and-iac",
+    "lesson": "capstone-containerize-ship-operate",
+    "type": "single-choice",
+    "prompt": "What is container orchestration?",
+    "explanation": "An orchestrator runs and manages containers across many machines, handling placement, scaling, self-healing, service discovery, and load balancing.",
+    "options": [
+      {
+        "id": "a",
+        "text": "A tool for building images faster"
+      },
+      {
+        "id": "b",
+        "text": "Software that manages containers across a cluster of machines — scheduling, scaling, self-healing, and more"
+      },
+      {
+        "id": "c",
+        "text": "A registry for storing images"
+      },
+      {
+        "id": "d",
+        "text": "A way to write Dockerfiles"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "orchestration-and-iac-02",
+    "topic": "orchestration-and-iac",
+    "lesson": "declarative-iac-gitops",
+    "type": "single-choice",
+    "prompt": "What is the desired-state model?",
+    "explanation": "Orchestrators are declarative: you state the desired state, and a control loop keeps correcting drift (crashes, node failures) to maintain it.",
+    "options": [
+      {
+        "id": "a",
+        "text": "You issue step-by-step imperative commands to start each container"
+      },
+      {
+        "id": "b",
+        "text": "You declare the goal (e.g. 5 healthy replicas) and the orchestrator continuously reconciles reality to match it"
+      },
+      {
+        "id": "c",
+        "text": "The orchestrator picks a random number of replicas"
+      },
+      {
+        "id": "d",
+        "text": "You must manually restart failed containers"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "orchestration-and-iac-03",
+    "topic": "orchestration-and-iac",
+    "lesson": "docker-swarm-vs-kubernetes",
+    "type": "single-choice",
+    "prompt": "Why is plain Docker Compose not a substitute for an orchestrator?",
+    "explanation": "Compose is great for one host, but it does not provide multi-host scheduling, cross-node self-healing, or autoscaling — that is what orchestrators add.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Compose cannot run more than one container"
+      },
+      {
+        "id": "b",
+        "text": "Compose runs a multi-container app on a single host; it does not spread work across machines or reschedule after a node fails"
+      },
+      {
+        "id": "c",
+        "text": "Compose does not support volumes"
+      },
+      {
+        "id": "d",
+        "text": "Compose cannot use images"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "orchestration-and-iac-04",
+    "topic": "orchestration-and-iac",
+    "lesson": "kubectl-basics",
+    "type": "fill-blank",
+    "prompt": "An orchestrator automatically restarting crashed containers and rescheduling those from failed nodes is called ______. (hyphenated word)",
+    "explanation": "Self-healing restores the desired state by replacing failed containers and rescheduling workloads from dead nodes onto healthy ones.",
+    "answer": [
+      "self-healing",
+      "self healing"
+    ]
+  },
+  {
+    "id": "orchestration-and-iac-05",
+    "topic": "orchestration-and-iac",
+    "lesson": "kubernetes-architecture",
+    "type": "single-choice",
+    "prompt": "How do Docker Swarm and Kubernetes compare at a high level?",
+    "explanation": "Swarm is easy and built into Docker for small clusters; Kubernetes is far more powerful and the industry standard, but more complex.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Swarm is the industry standard; Kubernetes is built into Docker"
+      },
+      {
+        "id": "b",
+        "text": "Swarm is simpler and built into Docker; Kubernetes is more powerful, the industry standard, with a steeper learning curve"
+      },
+      {
+        "id": "c",
+        "text": "They are identical"
+      },
+      {
+        "id": "d",
+        "text": "Neither can self-heal"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "orchestration-and-iac-06",
+    "topic": "orchestration-and-iac",
+    "lesson": "kubernetes-pods-and-deployments",
+    "type": "multiple-choice",
+    "prompt": "Which capabilities do orchestrators typically provide? Select all that apply.",
+    "explanation": "Orchestrators schedule, scale, self-heal, and provide service discovery and load balancing. They run your app; they do not write it.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Scheduling containers onto suitable nodes"
+      },
+      {
+        "id": "b",
+        "text": "Scaling the number of replicas up or down"
+      },
+      {
+        "id": "c",
+        "text": "Service discovery and load balancing across replicas"
+      },
+      {
+        "id": "d",
+        "text": "Writing your application's business logic for you"
+      }
+    ],
+    "answer": [
+      "a",
+      "b",
+      "c"
+    ]
+  },
+  {
+    "id": "orchestration-and-iac-07",
+    "topic": "orchestration-and-iac",
+    "lesson": "kubernetes-services-networking",
+    "type": "single-choice",
+    "prompt": "What is a Pod in Kubernetes?",
+    "explanation": "A Pod is the smallest deployable unit; it wraps one or more containers that share an IP and storage, and is usually a single container in practice.",
+    "options": [
+      {
+        "id": "a",
+        "text": "A physical server in the cluster"
+      },
+      {
+        "id": "b",
+        "text": "The smallest deployable unit — one or more containers sharing a network identity and storage"
+      },
+      {
+        "id": "c",
+        "text": "A load balancer"
+      },
+      {
+        "id": "d",
+        "text": "The control plane"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "orchestration-and-iac-08",
+    "topic": "orchestration-and-iac",
+    "lesson": "why-orchestration",
+    "type": "single-choice",
+    "prompt": "What does a Deployment provide?",
+    "explanation": "A Deployment declares the desired Pods (image and replica count) and manages a ReplicaSet to scale, self-heal, and roll out updates.",
+    "options": [
+      {
+        "id": "a",
+        "text": "A stable network address for Pods"
+      },
+      {
+        "id": "b",
+        "text": "Management of a set of identical Pods, including scaling, self-healing, and rolling updates"
+      },
+      {
+        "id": "c",
+        "text": "Storage for cluster state"
+      },
+      {
+        "id": "d",
+        "text": "The container runtime"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "orchestration-and-iac-09",
+    "topic": "orchestration-and-iac",
+    "lesson": "capstone-containerize-ship-operate",
+    "type": "single-choice",
+    "prompt": "Why do you need a Service when you already have Pods?",
+    "explanation": "Because Pods come and go with changing IPs, a Service provides a fixed name/IP and spreads traffic across the matching Pods.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Pods cannot run containers without one"
+      },
+      {
+        "id": "b",
+        "text": "Pods are ephemeral and change IPs; a Service gives a stable address and load-balances across the current Pods"
+      },
+      {
+        "id": "c",
+        "text": "A Service builds the image"
+      },
+      {
+        "id": "d",
+        "text": "A Service stores secrets"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "orchestration-and-iac-10",
+    "topic": "orchestration-and-iac",
+    "lesson": "declarative-iac-gitops",
+    "type": "fill-blank",
+    "prompt": "The command-line tool used to talk to a Kubernetes cluster is ______. (one word)",
+    "explanation": "kubectl is the CLI for the API server; the declarative workflow is kubectl apply -f manifest.yaml.",
+    "answer": [
+      "kubectl"
+    ]
+  },
+  {
+    "id": "orchestration-and-iac-11",
+    "topic": "orchestration-and-iac",
+    "lesson": "docker-swarm-vs-kubernetes",
+    "type": "single-choice",
+    "prompt": "How does the Docker image you built relate to Kubernetes?",
+    "explanation": "Kubernetes schedules and runs the same OCI image you built and pushed; the kubelet pulls it and runs it in a container inside a Pod.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Kubernetes rebuilds your app from source"
+      },
+      {
+        "id": "b",
+        "text": "Kubernetes runs the exact OCI image you pushed; a Deployment's image field points at your registry"
+      },
+      {
+        "id": "c",
+        "text": "Kubernetes cannot use Docker images"
+      },
+      {
+        "id": "d",
+        "text": "You must convert the image to a special Kubernetes format"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "orchestration-and-iac-12",
+    "topic": "orchestration-and-iac",
+    "lesson": "kubectl-basics",
+    "type": "match-pair",
+    "prompt": "Match each Kubernetes concept to its role.",
+    "explanation": "The control plane decides, nodes run workloads, Deployments maintain Pods, and Services expose them with a stable endpoint.",
+    "pairs": [
+      {
+        "left": "Control plane",
+        "right": "Manages the cluster and desired state"
+      },
+      {
+        "left": "Node",
+        "right": "A worker machine that runs Pods"
+      },
+      {
+        "left": "Deployment",
+        "right": "Keeps a set of identical Pods running"
+      },
+      {
+        "left": "Service",
+        "right": "Stable address and load balancing for Pods"
+      }
+    ]
+  },
+  {
+    "id": "orchestration-and-iac-13",
+    "topic": "orchestration-and-iac",
+    "lesson": "kubernetes-architecture",
+    "type": "single-choice",
+    "prompt": "What is Infrastructure as Code (IaC)?",
+    "explanation": "IaC defines and manages infrastructure through version-controlled files, making it repeatable, reviewable, and recoverable.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Writing application business logic"
+      },
+      {
+        "id": "b",
+        "text": "Managing infrastructure through machine-readable, version-controlled files instead of manual clicks or ad-hoc commands"
+      },
+      {
+        "id": "c",
+        "text": "A type of container image"
+      },
+      {
+        "id": "d",
+        "text": "A registry for storing servers"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "orchestration-and-iac-14",
+    "topic": "orchestration-and-iac",
+    "lesson": "kubernetes-pods-and-deployments",
+    "type": "single-choice",
+    "prompt": "What is the difference between declarative and imperative infrastructure?",
+    "explanation": "Declarative definitions state the goal and let the tool reconcile to it (safe to re-apply); imperative definitions script the exact steps and order.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Declarative lists the steps; imperative lists the end state"
+      },
+      {
+        "id": "b",
+        "text": "Declarative describes the desired end state and is idempotent; imperative specifies the ordered steps you run yourself"
+      },
+      {
+        "id": "c",
+        "text": "They are the same"
+      },
+      {
+        "id": "d",
+        "text": "Imperative is always safer"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "orchestration-and-iac-15",
+    "topic": "orchestration-and-iac",
+    "lesson": "kubernetes-services-networking",
+    "type": "single-choice",
+    "prompt": "How should secrets be handled in IaC?",
+    "explanation": "Configuration lives in code, but secrets must not sit in plain text in the repo; store them in a secrets manager (or platform secret mechanism) and reference them.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Commit them in plain text so they are versioned"
+      },
+      {
+        "id": "b",
+        "text": "Keep them out of the files and store them in a secrets manager, referencing them instead"
+      },
+      {
+        "id": "c",
+        "text": "Email them to the team"
+      },
+      {
+        "id": "d",
+        "text": "Bake them into the base image"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "orchestration-and-iac-16",
+    "topic": "orchestration-and-iac",
+    "lesson": "why-orchestration",
+    "type": "fill-blank",
+    "prompt": "When a live system diverges from its defined desired state, that gap is called configuration ______. (one word)",
+    "explanation": "Configuration drift happens when manual, out-of-band changes make the running system differ from its definitions; declarative IaC and GitOps detect and correct it.",
+    "answer": [
+      "drift"
+    ]
+  },
+  {
+    "id": "orchestration-and-iac-17",
+    "topic": "orchestration-and-iac",
+    "lesson": "capstone-containerize-ship-operate",
+    "type": "single-choice",
+    "prompt": "What is GitOps?",
+    "explanation": "In GitOps the desired state lives in Git; an automated agent reconciles the system to match, so changes are made via pull requests and drift is auto-corrected.",
+    "options": [
+      {
+        "id": "a",
+        "text": "A way to write Dockerfiles"
+      },
+      {
+        "id": "b",
+        "text": "An approach where Git is the source of truth and an agent continuously reconciles the live system to match it"
+      },
+      {
+        "id": "c",
+        "text": "A Git hosting service"
+      },
+      {
+        "id": "d",
+        "text": "A container runtime"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "orchestration-and-iac-18",
+    "topic": "orchestration-and-iac",
+    "lesson": "declarative-iac-gitops",
+    "type": "multiple-choice",
+    "prompt": "Which are benefits of Infrastructure as Code? Select all that apply.",
+    "explanation": "IaC makes infrastructure repeatable, reviewable, and auditable. Definitions still need testing — a bad definition can break infrastructure like bad code.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Repeatable environments from the same files"
+      },
+      {
+        "id": "b",
+        "text": "Changes reviewed through pull requests"
+      },
+      {
+        "id": "c",
+        "text": "Versioned, auditable history with easy rollback"
+      },
+      {
+        "id": "d",
+        "text": "It removes the need to ever test changes"
+      }
+    ],
+    "answer": [
+      "a",
+      "b",
+      "c"
+    ]
+  },
+  {
+    "id": "orchestration-and-iac-19",
+    "topic": "orchestration-and-iac",
+    "lesson": "docker-swarm-vs-kubernetes",
+    "type": "single-choice",
+    "prompt": "What is the correct order of the end-to-end workflow?",
+    "explanation": "The workflow flows from packaging the app to running it locally, publishing it via CI/CD, deploying it, and operating it in production.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Deploy, operate, containerize, test, build"
+      },
+      {
+        "id": "b",
+        "text": "Containerize, run locally with Compose, CI/CD (build/test/push), deploy, operate"
+      },
+      {
+        "id": "c",
+        "text": "Operate, deploy, run locally, containerize"
+      },
+      {
+        "id": "d",
+        "text": "CI/CD, containerize, operate, run locally"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "orchestration-and-iac-20",
+    "topic": "orchestration-and-iac",
+    "lesson": "kubectl-basics",
+    "type": "single-choice",
+    "prompt": "What does 'promote the image' mean?",
+    "explanation": "Promotion means moving one immutable, tested artifact through staging to production without rebuilding, so what runs is exactly what passed CI.",
+    "options": [
+      {
+        "id": "a",
+        "text": "Advertise the image on Docker Hub"
+      },
+      {
+        "id": "b",
+        "text": "Deploy the exact same tested image (by tag or digest) through each environment unchanged"
+      },
+      {
+        "id": "c",
+        "text": "Rebuild the image for each environment"
+      },
+      {
+        "id": "d",
+        "text": "Increase the image's tag number automatically"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "orchestration-and-iac-21",
+    "topic": "orchestration-and-iac",
+    "lesson": "kubernetes-architecture",
+    "type": "single-choice",
+    "prompt": "In the capstone Compose file, why does the api service use depends_on with condition: service_healthy?",
+    "explanation": "The readiness gate makes the api wait for the database's healthcheck to pass, so it does not race ahead and fail to connect.",
+    "options": [
+      {
+        "id": "a",
+        "text": "To publish the database port"
+      },
+      {
+        "id": "b",
+        "text": "So the api starts only after the database reports healthy, avoiding connection errors"
+      },
+      {
+        "id": "c",
+        "text": "To build the database image"
+      },
+      {
+        "id": "d",
+        "text": "To scan for vulnerabilities"
+      }
+    ],
+    "answer": "b"
+  },
+  {
+    "id": "orchestration-and-iac-22",
+    "topic": "orchestration-and-iac",
+    "lesson": "kubernetes-pods-and-deployments",
+    "type": "fill-blank",
+    "prompt": "To recover from a bad deployment, you redeploy the ______ image or digest, since old versions are kept available. (one word)",
+    "explanation": "Because you deploy immutable images and keep old ones, rollback is redeploying the previous image/digest — fast and reliable.",
+    "answer": [
+      "previous",
+      "prior"
+    ]
+  },
+  {
+    "id": "orchestration-and-iac-23",
+    "topic": "orchestration-and-iac",
+    "lesson": "kubernetes-services-networking",
+    "type": "multiple-choice",
+    "prompt": "Which practices does the capstone Dockerfile combine? Select all that apply.",
+    "explanation": "It uses multi-stage builds, a non-root user, a healthcheck, and manifest-before-source ordering. Secrets are never baked into the image.",
+    "options": [
+      {
+        "id": "a",
+        "text": "A multi-stage build with a slim runtime base"
+      },
+      {
+        "id": "b",
+        "text": "Running as a non-root USER"
+      },
+      {
+        "id": "c",
+        "text": "A HEALTHCHECK and cache-friendly instruction ordering"
+      },
+      {
+        "id": "d",
+        "text": "Baking production secrets into an ENV"
+      }
+    ],
+    "answer": [
+      "a",
+      "b",
+      "c"
+    ]
+  },
+  {
+    "id": "orchestration-and-iac-24",
+    "topic": "orchestration-and-iac",
+    "lesson": "why-orchestration",
+    "type": "ordering",
+    "prompt": "Order what happens to one commit as it flows through the pipeline and deploy.",
+    "explanation": "Tests gate the build; the built image is pushed; then the exact same image is promoted to deployment and operated.",
+    "items": [
+      {
+        "id": "test",
+        "text": "CI runs the tests"
+      },
+      {
+        "id": "build",
+        "text": "The image is built and tagged (version + SHA)"
+      },
+      {
+        "id": "push",
+        "text": "The image is pushed to the registry"
+      },
+      {
+        "id": "deploy",
+        "text": "That same image is deployed and monitored"
+      }
+    ],
+    "answer": [
+      "test",
+      "build",
+      "push",
+      "deploy"
+    ]
+  }
+]

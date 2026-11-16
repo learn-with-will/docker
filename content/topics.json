@@ -1,0 +1,74 @@
+[
+  {
+    "id": "foundations",
+    "title": "Containers & Architecture",
+    "blurb": "Understand kernel namespaces, cgroups, images versus containers, OCI standards, and the Docker daemon architecture.",
+    "order": 1
+  },
+  {
+    "id": "container-management",
+    "title": "Container Operations & CLI",
+    "blurb": "Master everyday container lifecycle commands, interactive execution, log inspection, port mapping, and resource cleanup.",
+    "order": 2
+  },
+  {
+    "id": "images-and-registries",
+    "title": "Images, Layers & Registries",
+    "blurb": "Work with read-only image layers, tags, digests, Docker Hub, GHCR, and production image tagging strategies.",
+    "order": 3
+  },
+  {
+    "id": "dockerfiles",
+    "title": "Building Images & Dockerfiles",
+    "blurb": "Write robust Dockerfiles with WORKDIR, COPY, RUN, CMD, ENTRYPOINT, build context, ARG, and ENV.",
+    "order": 4
+  },
+  {
+    "id": "storage-and-volumes",
+    "title": "Data Persistence & Storage",
+    "blurb": "Persist data across container lifetimes using named volumes, bind mounts, tmpfs, and backup strategies.",
+    "order": 5
+  },
+  {
+    "id": "networking",
+    "title": "Container Networking",
+    "blurb": "Connect containers using default bridges, user-defined networks with automatic DNS, host networking, and port binding.",
+    "order": 6
+  },
+  {
+    "id": "advanced-builds",
+    "title": "BuildKit, Caching & Multi-Stage",
+    "blurb": "Speed up builds and shrink image size with layer caching, multi-stage builds, Distroless images, cache mounts, and buildx.",
+    "order": 7
+  },
+  {
+    "id": "compose",
+    "title": "Multi-Container Apps with Compose",
+    "blurb": "Define and orchestrate multi-service applications using Compose Specification files, networks, healthchecks, and profiles.",
+    "order": 8
+  },
+  {
+    "id": "security",
+    "title": "Container Hardening & Security",
+    "blurb": "Protect containerized workloads with non-root users, dropped capabilities, vulnerability scans, and read-only filesystems.",
+    "order": 9
+  },
+  {
+    "id": "debugging-observability",
+    "title": "Logging, Inspection & Observability",
+    "blurb": "Troubleshoot crashing containers, configure healthchecks, set resource limits, and collect logs, metrics, and traces.",
+    "order": 10
+  },
+  {
+    "id": "cicd-and-deployment",
+    "title": "CI/CD & Production Deployment",
+    "blurb": "Automate container pipelines with GitHub Actions, publish to GHCR, and implement rolling, blue-green, and canary deployments.",
+    "order": 11
+  },
+  {
+    "id": "orchestration-and-iac",
+    "title": "Orchestration, Kubernetes & IaC",
+    "blurb": "Explore container orchestration, Kubernetes pods and deployments, kubectl, declarative IaC, and end-to-end production operations.",
+    "order": 12
+  }
+]

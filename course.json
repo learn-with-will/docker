@@ -1,0 +1,68 @@
+{
+  "$schema": "https://raw.githubusercontent.com/learn-with-will/course-shell/main/course.schema.json",
+  "id": "docker",
+  "name": "Docker Learn",
+  "subject": "Docker & DevOps",
+  "description": "Learn Docker and DevOps in five-minute bites: containers, images, Dockerfiles, Compose, multi-stage builds, CI/CD, security, and orchestration.",
+  "brand": {
+    "color": "#2496ed",
+    "scale": {
+      "50": "#eff7ff",
+      "100": "#dbedfe",
+      "200": "#bfe0fe",
+      "300": "#93ccfd",
+      "400": "#61b0fa",
+      "500": "#3f9cf2",
+      "600": "#2496ed",
+      "700": "#1b73c9",
+      "800": "#1c5da3",
+      "900": "#1c4f81",
+      "950": "#13314f"
+    },
+    "gradient": [
+      "#2496ed",
+      "#38bdf8",
+      "#0284c7"
+    ],
+    "gradientDark": [
+      "#61b0fa",
+      "#38bdf8",
+      "#0284c7"
+    ]
+  },
+  "home": {
+    "badge": "Current Docker Engine (29.x) & Compose v2",
+    "headline": [
+      "Master Docker and DevOps in ",
+      "five-minute bites",
+      "."
+    ],
+    "searchExamples": [
+      "Dockerfile",
+      "compose.yaml",
+      "multi-stage"
+    ],
+    "featuredLesson": "what-is-a-container",
+    "featuredCode": {
+      "lang": "docker",
+      "code": "FROM alpine:3.20\nRUN apk add --no-cache nodejs\nWORKDIR /app\nCOPY package.json ./\nRUN npm install --omit=dev\nCOPY src/ ./src/\nUSER node\nCMD [\"node\", \"src/index.js\"]"
+    },
+    "quizPreview": {
+      "topic": "foundations",
+      "prompt": "What is the primary difference between a container and a virtual machine?",
+      "options": [
+        "A container runs a complete guest operating system and kernel",
+        "A container shares the host kernel as an isolated process",
+        "A container requires dedicated hypervisor hardware virtualization",
+        "A virtual machine cannot run Linux operating systems"
+      ],
+      "selected": 1
+    }
+  },
+  "codeLanguages": [
+    "docker",
+    "yaml",
+    "bash",
+    "json"
+  ]
+}

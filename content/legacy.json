@@ -1,0 +1,266 @@
+[
+  {
+    "id": "lesson-01",
+    "slug": "what-is-docker",
+    "title": "What Is Docker & Why Containers?",
+    "lessons": [
+      "what-is-a-container",
+      "containers-vs-vms",
+      "namespaces-and-cgroups",
+      "docker-architecture",
+      "oci-standards"
+    ]
+  },
+  {
+    "id": "lesson-02",
+    "slug": "installing-docker",
+    "title": "Installing Docker & Running Your First Container",
+    "lessons": [
+      "docker-desktop-vs-engine",
+      "container-lifecycle-states",
+      "running-first-container",
+      "docker-run-flags"
+    ]
+  },
+  {
+    "id": "lesson-03",
+    "slug": "images-and-docker-hub",
+    "title": "Images, Tags & Docker Hub",
+    "lessons": [
+      "image-layers",
+      "tags-and-digests",
+      "pulling-and-inspecting-images",
+      "docker-hub"
+    ]
+  },
+  {
+    "id": "lesson-04",
+    "slug": "managing-containers",
+    "title": "Managing Containers",
+    "lessons": [
+      "lifecycle-commands",
+      "removing-containers",
+      "executing-commands",
+      "container-logs",
+      "port-publishing",
+      "clean-system-prune"
+    ]
+  },
+  {
+    "id": "lesson-05",
+    "slug": "your-first-dockerfile",
+    "title": "Your First Dockerfile",
+    "lessons": [
+      "dockerfile-anatomy",
+      "cmd-vs-entrypoint",
+      "exec-vs-shell-form",
+      "build-context-dockerignore"
+    ]
+  },
+  {
+    "id": "lesson-06",
+    "slug": "volumes-and-bind-mounts",
+    "title": "Data Persistence: Volumes & Bind Mounts",
+    "lessons": [
+      "writable-layer-storage",
+      "named-volumes",
+      "bind-mounts",
+      "tmpfs-mounts",
+      "volume-inspection-backup",
+      "volume-permissions",
+      "volume-drivers-and-plugins",
+      "storage-best-practices"
+    ]
+  },
+  {
+    "id": "lesson-07",
+    "slug": "container-networking",
+    "title": "Container Networking Basics",
+    "lessons": [
+      "default-bridge-network",
+      "user-defined-bridge",
+      "host-and-none-networking",
+      "port-publishing-vs-expose",
+      "custom-networks-cli",
+      "container-dns-troubleshooting",
+      "macvlan-and-ipvlan",
+      "network-security-isolation"
+    ]
+  },
+  {
+    "id": "lesson-08",
+    "slug": "configuration-and-lifecycle",
+    "title": "Configuration & the Container Lifecycle",
+    "lessons": [
+      "arg-vs-env",
+      "environment-files",
+      "container-restart-policies",
+      "stop-signals-and-exit-codes",
+      "dockerfile-instruction-reference"
+    ]
+  },
+  {
+    "id": "lesson-09",
+    "slug": "dockerfile-best-practices",
+    "title": "Dockerfile Best Practices & Layer Caching",
+    "lessons": [
+      "layer-caching-order",
+      "combining-run-commands"
+    ]
+  },
+  {
+    "id": "lesson-10",
+    "slug": "multi-stage-builds",
+    "title": "Multi-Stage Builds & Small Images",
+    "lessons": [
+      "multi-stage-builds",
+      "copy-from-stages",
+      "minimal-base-images"
+    ]
+  },
+  {
+    "id": "lesson-11",
+    "slug": "docker-compose-basics",
+    "title": "Docker Compose: Multi-Container Apps",
+    "lessons": [
+      "compose-specification",
+      "compose-services-and-build",
+      "compose-up-and-down",
+      "compose-networking-dns"
+    ]
+  },
+  {
+    "id": "lesson-12",
+    "slug": "docker-compose-in-depth",
+    "title": "Compose in Depth",
+    "lessons": [
+      "compose-named-volumes",
+      "compose-depends-on-health",
+      "compose-env-interpolation",
+      "compose-profiles-and-overrides"
+    ]
+  },
+  {
+    "id": "lesson-13",
+    "slug": "registries-and-tagging",
+    "title": "Registries & Tagging Strategies",
+    "lessons": [
+      "github-container-registry",
+      "private-registries-auth",
+      "tagging-strategies",
+      "image-retention-and-cleanup"
+    ]
+  },
+  {
+    "id": "lesson-14",
+    "slug": "container-security",
+    "title": "Container Security Fundamentals",
+    "lessons": [
+      "non-root-user",
+      "dropping-linux-capabilities",
+      "secrets-hygiene",
+      "buildkit-secrets",
+      "vulnerability-scanning",
+      "read-only-rootfs",
+      "base-image-provenance",
+      "docker-daemon-security"
+    ]
+  },
+  {
+    "id": "lesson-15",
+    "slug": "logging-and-debugging",
+    "title": "Logging, Monitoring & Debugging Containers",
+    "lessons": [
+      "docker-logs-and-drivers",
+      "healthcheck-instruction",
+      "container-resource-limits",
+      "docker-inspect-formatting",
+      "debugging-crashing-containers"
+    ]
+  },
+  {
+    "id": "lesson-16",
+    "slug": "buildkit-and-multi-platform",
+    "title": "BuildKit, Buildx & Multi-Platform Images",
+    "lessons": [
+      "buildkit-features",
+      "buildkit-cache-mounts",
+      "docker-buildx-multiarch"
+    ]
+  },
+  {
+    "id": "lesson-17",
+    "slug": "devops-and-cicd",
+    "title": "DevOps & the CI/CD Lifecycle",
+    "lessons": [
+      "twelve-factor-containers",
+      "devops-pipeline-stages"
+    ]
+  },
+  {
+    "id": "lesson-18",
+    "slug": "cicd-with-github-actions",
+    "title": "CI/CD with GitHub Actions",
+    "lessons": [
+      "github-actions-docker-build",
+      "github-actions-cache",
+      "pushing-to-ghcr-actions"
+    ]
+  },
+  {
+    "id": "lesson-19",
+    "slug": "deployment-strategies",
+    "title": "Deployment Strategies",
+    "lessons": [
+      "recreate-vs-rolling-deployment",
+      "blue-green-deployments",
+      "canary-deployments-health-gates"
+    ]
+  },
+  {
+    "id": "lesson-20",
+    "slug": "orchestration-concepts",
+    "title": "Orchestration Concepts",
+    "lessons": [
+      "why-orchestration",
+      "docker-swarm-vs-kubernetes"
+    ]
+  },
+  {
+    "id": "lesson-21",
+    "slug": "introduction-to-kubernetes",
+    "title": "Introduction to Kubernetes",
+    "lessons": [
+      "kubernetes-architecture",
+      "kubernetes-pods-and-deployments",
+      "kubernetes-services-networking",
+      "kubectl-basics"
+    ]
+  },
+  {
+    "id": "lesson-22",
+    "slug": "infrastructure-as-code",
+    "title": "Infrastructure as Code",
+    "lessons": [
+      "declarative-iac-gitops"
+    ]
+  },
+  {
+    "id": "lesson-23",
+    "slug": "observability",
+    "title": "Observability: Logs, Metrics & Health",
+    "lessons": [
+      "three-pillars-observability",
+      "structured-json-logging",
+      "prometheus-metrics-scraping"
+    ]
+  },
+  {
+    "id": "lesson-24",
+    "slug": "capstone-containerize-ship-operate",
+    "title": "Capstone: Containerize, Ship & Operate an App",
+    "lessons": [
+      "capstone-containerize-ship-operate"
+    ]
+  }
+]
